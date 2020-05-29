@@ -1,5 +1,6 @@
 package ch.bztf;
 
-public class CalcController {
-    
+/*
+public class CalcController extends Application {
 }
+*/

@@ -1,4 +1,5 @@
 module ch.bztf {
-    requires javafx.controls;
+    requires transitive javafx.controls;
+    requires javafx.fxml;
     exports ch.bztf;
 }
