@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="398.0" prefWidth="260.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bztf.CalcController">
+<AnchorPane prefHeight="421.0" prefWidth="260.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bztf.CalcController">
    <children>
       <TextField fx:id="input" alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="233.0" promptText="( Enter an RPN expression )" />
       <TextField alignment="TOP_CENTER" editable="false" layoutX="14.0" layoutY="49.0" prefHeight="6.0" prefWidth="233.0" style="-fx-text-fill: #FF0000;">
@@ -13,14 +13,64 @@
             <Font size="10.0" />
          </font>
       </TextField>
-      <Button layoutX="82.0" layoutY="173.0" mnemonicParsing="false" text="1" />
-      <Button layoutX="117.0" layoutY="173.0" mnemonicParsing="false" text="2" />
-      <Button layoutX="158.0" layoutY="173.0" mnemonicParsing="false" text="3" />
-      <Button layoutX="82.0" layoutY="137.0" mnemonicParsing="false" text="4" />
-      <Button layoutX="117.0" layoutY="137.0" mnemonicParsing="false" text="5" />
-      <Button layoutX="158.0" layoutY="137.0" mnemonicParsing="false" text="6" />
-      <Button layoutX="82.0" layoutY="97.0" mnemonicParsing="false" onAction="#appendToInput" text="7" />
-      <Button layoutX="117.0" layoutY="97.0" mnemonicParsing="false" text="8" />
-      <Button layoutX="158.0" layoutY="97.0" mnemonicParsing="false" text="9" />
+      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="c" />
+      <Button blendMode="MULTIPLY" layoutX="166.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="d" />
+      <Button blendMode="MULTIPLY" layoutX="216.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="🠔" />
+      <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="a" />
+      <Button blendMode="MULTIPLY" layoutX="65.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="b" />
+      <Button layoutX="115.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="×" />
+      <Button layoutX="166.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="÷" />
+      <Button layoutX="216.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="\%" />
+      <Button layoutX="14.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="+" />
+      <Button layoutX="65.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="−" />
+      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="8" />
+      <Button blendMode="MULTIPLY" layoutX="166.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="9" />
+      <Button layoutX="216.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="CE" textOverrun="CLIP">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="√" />
+      <Button blendMode="MULTIPLY" layoutX="65.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="7" />
+      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="5" />
+      <Button blendMode="MULTIPLY" layoutX="166.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="6" />
+      <Button layoutX="216.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="C" textOverrun="CLIP">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="²" />
+      <Button blendMode="MULTIPLY" layoutX="65.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="4" />
+      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="2" />
+      <Button blendMode="MULTIPLY" layoutX="166.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="3" />
+      <Button layoutX="216.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="⌫" textOverrun="CLIP">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button contentDisplay="TOP" layoutX="14.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="yˣ" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Button blendMode="MULTIPLY" layoutX="65.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="1" />
+      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="0" />
+      <Button layoutX="166.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="." textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="216.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="(-)" textOverrun="CLIP">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="↤" />
+      <Button layoutX="65.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="↦" />
+      <Button layoutX="14.0" layoutY="380.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="233.0" text="=">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
