@@ -13,61 +13,61 @@
             <Font size="10.0" />
          </font>
       </TextField>
-      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="c" />
-      <Button blendMode="MULTIPLY" layoutX="166.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="d" />
-      <Button blendMode="MULTIPLY" layoutX="216.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="🠔" />
-      <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="a" />
-      <Button blendMode="MULTIPLY" layoutX="65.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="b" />
-      <Button layoutX="115.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="×" />
-      <Button layoutX="166.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="÷" />
-      <Button layoutX="216.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="\%" />
-      <Button layoutX="14.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="+" />
-      <Button layoutX="65.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="−" />
-      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="8" />
-      <Button blendMode="MULTIPLY" layoutX="166.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="9" />
-      <Button layoutX="216.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="CE" textOverrun="CLIP">
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="c" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="166.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="d" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="216.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="🠔" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="14.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="a" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="65.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="b" />
+      <Button focusTraversable="false" layoutX="115.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="×" />
+      <Button focusTraversable="false" layoutX="166.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="÷" />
+      <Button focusTraversable="false" layoutX="216.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="\%" />
+      <Button focusTraversable="false" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="+" />
+      <Button focusTraversable="false" layoutX="65.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="−" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="8" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="166.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="9" />
+      <Button focusTraversable="false" layoutX="216.0" layoutY="181.0" mnemonicParsing="false" onAction="#clearInput" prefHeight="30.0" prefWidth="30.0" text="CE" textOverrun="CLIP">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <Button layoutX="14.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="√" />
-      <Button blendMode="MULTIPLY" layoutX="65.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="7" />
-      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="5" />
-      <Button blendMode="MULTIPLY" layoutX="166.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="6" />
-      <Button layoutX="216.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="C" textOverrun="CLIP">
+      <Button focusTraversable="false" layoutX="14.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="√" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="65.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="7" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="5" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="166.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="6" />
+      <Button focusTraversable="false" layoutX="216.0" layoutY="231.0" mnemonicParsing="false" onAction="#truncateInputByWord" prefHeight="30.0" prefWidth="30.0" text="C" textOverrun="CLIP">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <Button layoutX="14.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="²" />
-      <Button blendMode="MULTIPLY" layoutX="65.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="4" />
-      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="2" />
-      <Button blendMode="MULTIPLY" layoutX="166.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="3" />
-      <Button layoutX="216.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="⌫" textOverrun="CLIP">
+      <Button focusTraversable="false" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="²" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="65.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="4" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="2" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="166.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="3" />
+      <Button focusTraversable="false" layoutX="216.0" layoutY="281.0" mnemonicParsing="false" onAction="#truncateInputByChar" prefHeight="30.0" prefWidth="30.0" text="⌫" textOverrun="CLIP">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <Button contentDisplay="TOP" layoutX="14.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="yˣ" textAlignment="CENTER" textOverrun="CLIP">
+      <Button contentDisplay="TOP" focusTraversable="false" layoutX="14.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="yˣ" textAlignment="CENTER" textOverrun="CLIP">
          <font>
             <Font size="12.0" />
          </font>
       </Button>
-      <Button blendMode="MULTIPLY" layoutX="65.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="1" />
-      <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="0" />
-      <Button layoutX="166.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="." textAlignment="CENTER" textOverrun="CLIP">
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="65.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="1" />
+      <Button blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="0" />
+      <Button focusTraversable="false" layoutX="166.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="." textAlignment="CENTER" textOverrun="CLIP">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="216.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="(-)" textOverrun="CLIP">
+      <Button focusTraversable="false" layoutX="216.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="(-)" textOverrun="CLIP">
          <font>
             <Font size="12.0" />
          </font>
       </Button>
-      <Button layoutX="14.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="↤" />
-      <Button layoutX="65.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="↦" />
-      <Button layoutX="14.0" layoutY="380.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="233.0" text="=">
+      <Button focusTraversable="false" layoutX="14.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="↤" />
+      <Button focusTraversable="false" layoutX="65.0" layoutY="331.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="↦" />
+      <Button focusTraversable="false" layoutX="14.0" layoutY="380.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="233.0" text="=">
          <font>
             <Font size="15.0" />
          </font>
