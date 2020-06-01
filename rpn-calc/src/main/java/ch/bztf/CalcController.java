@@ -33,7 +33,6 @@ public class CalcController {
     @FXML
     private void clearInput(ActionEvent ev) {
         input.setText("");
-        input.requestFocus();
     }
 
     /**
@@ -50,7 +49,7 @@ public class CalcController {
      *           It is unused by this function.
      */
     @FXML
-    private void truncateInputByChar(ActionEvent ev) {
+    private void deleteInputByChar(ActionEvent ev) {
         input.deletePreviousChar();
     }
 
@@ -78,7 +77,7 @@ public class CalcController {
      *           It is unused by this function.
      */
     @FXML
-    private void truncateInputByWord(ActionEvent ev) {
+    private void deleteInputByWord(ActionEvent ev) {
         try {
             Robot r = new Robot();
             r.keyPress(KeyCode.CONTROL);
@@ -90,13 +89,49 @@ public class CalcController {
         }
     }
 
-
+    /**
+     * Inserts the accessibility text of a given
+     * button into the input text field at the
+     * current caret position.
+     * 
+     * @param ev The given button's action event
+     *           from which the accessible text is
+     *           retrieved.
+     */
     @FXML
-    private void appendToInput(ActionEvent ev) {
+    private void insertInput(ActionEvent ev) {
         Button button = (Button)ev.getSource();
-        input.appendText(button.getText() + " ");
+        input.insertText(input.getCaretPosition(), button.getAccessibleText());
     }
 
-    // appendDigitToInput
-    // appendOperatorToInput
+    /**
+     * Inserts the accessibility text of a given
+     * button into the input text field at the
+     * current caret position. The text to be
+     * inserted is enclosed in a space each if
+     * no space is present already, with the
+     * exception of the string start or end.
+     * 
+     * @param ev The given button's action event
+     *           from which the accessible text is
+     *           retrieved.
+     */
+    @FXML
+    private void insertInputWithSpacing(ActionEvent ev) {
+        String text = input.getText();
+        int pos = input.getCaretPosition();
+        
+        String prepend = "";
+        if (pos > 0 && text.charAt(pos - 1) != ' ') {
+            prepend += ' ';
+        }
+
+        String append = "";
+        if (pos < text.length() && text.charAt(pos) != ' ') {
+            append += ' ';
+        }
+
+        Button button = (Button)ev.getSource();
+        input.insertText(pos, prepend + button.getAccessibleText() + append);
+    }
 }
