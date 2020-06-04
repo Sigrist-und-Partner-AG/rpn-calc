@@ -7,8 +7,11 @@ package ch.bztf;
  */
 public class RPNCalc {
 
-    /* The maximum output precision allowed. */
-    private static final int MAX_PRECISION = 15;
+    /** The maximum output precision allowed. */
+    public static final int MAX_PRECISION = 15;
+
+    /** The default output precision. */
+    private static final int DEFAULT_PRECISION = 3;
 
     /**
      * The result of the previous calculation.
@@ -24,7 +27,10 @@ public class RPNCalc {
      * as the number of decimal places, ranging
      * from 0 to {@link #MAX_PRECISION}.
      */
-    private int precision;
+    private int precision = DEFAULT_PRECISION;
+
+    /** Constructor that sets all fields to default values. */
+    public RPNCalc() {}
 
     /**
      * Constructor that takes an initial precision value.
@@ -71,8 +77,7 @@ public class RPNCalc {
     }
 
     /**
-     * Shifts the output precision by a given number of
-     * decimal places.
+     * Shifts the output precision by a given number of decimal places.
      * 
      * @param places The amount of places the current output
      *               precision is to be shifted by. This value
@@ -112,7 +117,7 @@ public class RPNCalc {
 
     /**
      * Retrieves the last result as a String and formats
-     * the output using the currenty set precision.
+     * the output using the currently set precision.
      * 
      * @return The fully formatted result.
      *         The empty string is returned if {@code null}
