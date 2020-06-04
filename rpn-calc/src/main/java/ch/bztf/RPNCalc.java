@@ -14,8 +14,10 @@ public class RPNCalc {
      * The result of the previous calculation.
      * This is overwritten every time an RPN
      * expression is successfully evaluated.
+     * This field is {@code null} if no result
+     * is available.
      */
-    private double result;
+    private Double result = null;
 
     /**
      * The output precision of {@link #result}
@@ -23,6 +25,16 @@ public class RPNCalc {
      * from 0 to {@link #MAX_PRECISION}.
      */
     private int precision;
+
+    /**
+     * Constructor that takes an initial precision value.
+     * 
+     * @param precision The initial precision to be set.
+     * @throws IllegalArgumentException Raised if the precision is invalid.
+     */
+    public RPNCalc(int precision) throws IllegalArgumentException {
+        setPrecision(precision);
+    } 
 
     /**
      * Helper function which validates that a given
@@ -73,5 +85,55 @@ public class RPNCalc {
         int new_precision = this.precision + places;
         checkPrecision(new_precision);
         return (this.precision = new_precision);
+    }
+
+    /**
+     * Gets the last result in numerical form.
+     * 
+     * @return The previous calculation result.
+     *         {@code null} if none is available. 
+     */
+    public Double getLastResult() {
+        return this.result;
+    }
+
+    /**
+     * Converts a given double to a string and formats
+     * the output using the currently set precision.
+     * 
+     * @param num The number to be formatted.
+     * @return The fully formatted number.
+     *         The empty string is returned if {@code null}
+     *         is passed in for {@code num}.
+     */
+    private String formatNumber(Double num) {
+        return (num == null) ? "" : String.format("%." + this.precision + "f", num);
+    }
+
+    /**
+     * Retrieves the last result as a String and formats
+     * the output using the currenty set precision.
+     * 
+     * @return The fully formatted result.
+     *         The empty string is returned if {@code null}
+     *         is passed in for {@code num}.
+     */
+    public String getFormattedLastResult() {
+        return formatNumber(this.result);
+    }
+
+    // getFormattedLastSequence
+
+    /**
+     * Evaluates a full RPN expression.
+     * 
+     * @param expr The RPN expression in string form.
+     * @return The immediate result in numerical form.
+     *         If the expression cannot be reduced to a
+     *         single number, {@code null} is returned.
+     */
+    public Double eval(String expr) {
+        // do the tricky stuff here...
+        return 0.0;
     }
 }
