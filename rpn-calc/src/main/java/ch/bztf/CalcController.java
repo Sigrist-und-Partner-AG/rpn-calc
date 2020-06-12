@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.robot.Robot;
+import sun.font.TextLabel;
 
 /**
  * @author Timothy R. Schmid
@@ -23,6 +24,10 @@ public class CalcController {
      */
     @FXML
     private TextField input;
+
+    /** The manually uneditable text field for error messages. */ 
+    @FXML
+    private TextField error;
 
     /**
      * Wipes the input field completely.
@@ -71,7 +76,7 @@ public class CalcController {
      *           functionality. This may fail if the
      *           appropriate security manager permission
      *           hasn't been set, in which case this
-     *           function becomes a no-op.
+     *           function simply sets the error text.
      * 
      * @param ev The action event.
      *           It is unused by this function.
@@ -85,7 +90,7 @@ public class CalcController {
             r.keyRelease(KeyCode.BACK_SPACE);
             r.keyRelease(KeyCode.CONTROL);
         } catch (SecurityException e) {
-            System.err.println("Warning: Permission 'createRobot' not granted");
+            error.setText("Error: permission 'createRobot' not granted");
         }
     }
 
@@ -133,5 +138,20 @@ public class CalcController {
 
         Button button = (Button)ev.getSource();
         input.insertText(pos, prepend + button.getAccessibleText() + append);
+    }
+
+    @FXML
+    private void evalInput(ActionEvent ev) {
+        
+    }
+
+    @FXML
+    private void increasePrecision(ActionEvent ev) {
+
+    }
+
+    @FXML
+    private void decreasePrecision(ActionEvent ev) {
+
     }
 }

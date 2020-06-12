@@ -139,6 +139,14 @@ public class RPNCalc {
      */
     public Double eval(String expr) {
         // do the tricky stuff here...
+        /*
+        var tokens = split(expr);
+        for t in tokens {
+            <modify stack>
+            <error on stack underflow>
+        }
+        <print remaining tokens + trailing whitespace>
+        */
         return 0.0;
     }
 }
