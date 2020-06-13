@@ -7,10 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * @author Timothy R. Schmid
- * 
  * JavaFX App initialization.
  * View the README for operative details.
+ * 
+ * @author Timothy R. Schmid
  */
 public class App extends Application {
 

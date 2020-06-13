@@ -8,11 +8,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.robot.Robot;
 
 /**
- * @author Timothy R. Schmid
- * 
  * JavaFX utilizes an MVC (model-view-controller)
  * architecture. This class is the controller for
  * the calculator represented by the fxml.
+ * 
+* @author Timothy R. Schmid
  */
 public class CalcController {
 

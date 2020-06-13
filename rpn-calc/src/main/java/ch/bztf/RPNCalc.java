@@ -1,12 +1,12 @@
 package ch.bztf;
 
 import java.util.EmptyStackException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
  * @author Timothy R. Schmid
- * 
- * 
  */
 public class RPNCalc {
 
@@ -32,8 +32,13 @@ public class RPNCalc {
      */
     private int precision = DEFAULT_PRECISION;
 
+    /** The registers from "a" to "z" (lowercase only) for saving values. */
+    private Map<String, Double> registers = new HashMap<String, Double>();
+
     /** Constructor that sets all fields to default values. */
-    public RPNCalc() {}
+    public RPNCalc() {
+        clearRegisters();
+    }
 
     /**
      * Constructor that takes an initial precision value.
@@ -43,7 +48,45 @@ public class RPNCalc {
      */
     public RPNCalc(int precision) throws IllegalArgumentException {
         setPrecision(precision);
+        clearRegisters();
     } 
+
+    /** 
+     * Clears all registers by setting them to zero.
+     * It is legal to use this function for initialization.
+     */
+    public void clearRegisters() {
+        for (char c = 'a'; c <= 'z'; c++) {
+            this.registers.put(c + "", 0.0);
+        }
+    }
+
+    /**
+     * Gets the value of the specified register.
+     * 
+     * @param reg The register to be queried.
+     * @return The value of register {@code reg}.
+     *         {@code null} is returned if it does not exist.
+     */
+    public Double getRegister(String reg) {
+        return registers.get(reg);
+    }
+
+    /**
+     * Sets the value of the specified register to the given double.
+     * 
+     * @param reg The register to be assigned to.
+     * @param val The value {@code reg} will be set to.
+     * @return Whether the assignment to {@code reg} succeeded.
+     *         {@code false} is returned if the register does not exist.
+     */
+    public boolean setRegister(String reg, Double val) {
+        if (registers.containsKey(reg)) {
+            registers.put(reg, val);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Helper function which validates that a given
@@ -212,6 +255,40 @@ public class RPNCalc {
     }
 
     /**
+     * Stores the topmost value of the stack in the passed register.
+     * 
+     * @param stack The stack holding any number of possible operands.
+     * @param reg The register the topmost stack value will be stored in.
+     * @return The topmost value of the stack.
+     *         It is only peeked, not popped.
+     * @throws EmptyStackException Raised on stack underflow.
+     */
+    private Double store(Stack<Double> stack, String reg) throws EmptyStackException {
+        Double operand = stack.peek();
+        setRegister(reg, operand);
+        return operand;
+    }
+
+    /**
+     * Helper function to check whether the array index following
+     * a given register contains a 'store' operation. 
+     * This is necessary in order to determine whether the register
+     * at {@code reg_index} should be treated as an assignable lvalue.
+     * 
+     * @param tokens An RPN expression as an array of tokens.
+     * @param reg_index The index the register in question appeared at.
+     * @return {@code true} if the next index contains a 'store' operation,
+     *         {@code false} otherwise. {@code false} is also returned if
+     *         the array does not contain any further elements.
+     */
+    private boolean peek4Store(String[] tokens, int reg_index) {
+        return (
+            tokens.length > reg_index + 1 &&
+            tokens[reg_index + 1].equals("<-") 
+        );
+    }
+
+    /**
      * Splits a given RPN expression into a number of
      * string tokens, with whitespace as the delimiter.
      * Leading and trailing whitespace is stripped. 
@@ -233,29 +310,49 @@ public class RPNCalc {
      */
     public Double eval(String expr) {
 
-        var stack = new Stack<Double>();
-        String[] tokens = tokenize(expr);
+        /* Save registers so we can restore them in case of error. */
+        Map<String, Double> saved_regs = new HashMap<String, Double>(this.registers);
 
-        for (String token : tokens) {
-            /* Push literal operands onto the stack */
-            try {
-                stack.push(Double.parseDouble(token));
-            } catch (NumberFormatException e) {
+        var stack = new Stack<Double>();  // Operand stack
+        String[] tokens = tokenize(expr); // Form iterable tokens
 
+        try {
 
-                // apply();
-            }
-        } 
+           /*
+            * The algorithm abides by the following rules:
+            * - Literal values are pushed onto the stack.
+            * - If a register is followed by a '<-' token,
+            *   the topmost value of the stack is stored in it.
+            *   Otherwise, the register is pushed onto the stack.
+            * - Operators pop the required number of operands off
+            *   the stack and push the result back onto the stack.
+            */
+            for (int i = 0; i < tokens.length; i++)
+                try {
+                    stack.push(Double.parseDouble(tokens[i])); // Literals are operands
+                } catch (NumberFormatException e) {
+                    Double reg_val = getRegister(tokens[i]);   // Check if register
+                    if (reg_val != null) {
+                        if (peek4Store(tokens, i)) {  
+                            store(stack, tokens[i]); // Treat register as lvalue
+                            i++;                     // Skip next token (store)
+                        } else {
+                            stack.push(reg_val);     // Treat register as rvalue
+                        }
+                    } else {              
+                        stack.push(apply(stack, tokens[i]));   // Apply operator
+                    }
+                }
+            } 
 
-        // do the tricky stuff here...
-        /*
-        var tokens = split(expr);
-        for t in tokens {
-            <modify stack>
-            <error on stack underflow>
+        } catch (EmptyStackException e) {
+
+        } catch (ArithmeticException e) {
+
+        } catch (IllegalArgumentException e) {
+
         }
-        <print remaining tokens + trailing whitespace>
-        */
-        return 0.0;
+
+        return (stack.size() == 1 ? stack.pop() : null);
     }
 }

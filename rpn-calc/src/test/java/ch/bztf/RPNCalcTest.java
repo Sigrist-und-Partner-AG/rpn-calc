@@ -6,10 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author Timothy R. Schmid
- * 
  * This is the test suite for the {@link RPNCalc} class.
  * The tests are executed using the standard JUnit framework.
+ * 
+ * @author Timothy R. Schmid
  */
 public class RPNCalcTest {
     
