@@ -273,11 +273,10 @@ public class RPNCalc {
      *           Both unary and binary operators are supported.
      * @return The calculation result of the operator application. 
      * @throws EmptyStackException Raised on stack underflow.
-     * @throws ArithmeticException Raised in the event of division by zero.
      * @throws IllegalArgumentException Raised if {@code op} is an unknown operator.
      */
     private Double apply(Stack<Double> stack, String op) 
-    throws EmptyStackException, ArithmeticException, IllegalArgumentException {
+    throws EmptyStackException, IllegalArgumentException {
         if (isUnary(op)) {
             Double operand = stack.pop();
             switch (op) {
@@ -394,9 +393,6 @@ public class RPNCalc {
         } catch (EmptyStackException e) {
             this.registers = saved_regs;
             throw new RPNCalcException("Stack underflow", tokens[i], i);
-        } catch (ArithmeticException e) {
-            this.registers = saved_regs;
-            throw new RPNCalcException("Division by zero", tokens[i], i);
         } catch (IllegalArgumentException e) {
             this.registers = saved_regs;
             throw new RPNCalcException("Unrecognized symbol", tokens[i], i);

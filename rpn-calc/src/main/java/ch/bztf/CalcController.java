@@ -8,23 +8,21 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.robot.Robot;
 
 /**
- * JavaFX utilizes an MVC (model-view-controller)
- * architecture. This class is the controller for
- * the calculator represented by the fxml.
+ * JavaFX utilizes an MVC (model-view-controller) architecture. 
+ * This class is the controller for the calculator represented by the fxml.
  * 
 * @author Timothy R. Schmid
  */
 public class CalcController {
 
     /**
-     * The free-form text field into which the RPN
-     * expression is entered. Validation is performed
-     * only as soon as the result is requested.
+     * The free-form text field into which the RPN expression is entered. 
+     * Validation is performed only as soon as the result is requested.
      */
     @FXML
     private TextField input;
 
-    /** The manually uneditable text field for error messages. */ 
+    /** The manually uneditable text field reserved for error messages. */ 
     @FXML
     private TextField error;
 
@@ -94,13 +92,11 @@ public class CalcController {
     }
 
     /**
-     * Inserts the accessibility text of a given
-     * button into the input text field at the
-     * current caret position.
+     * Inserts the accessibility text of a given button into the 
+     * input text field at the current caret position.
      * 
-     * @param ev The given button's action event
-     *           from which the accessible text is
-     *           retrieved.
+     * @param ev The given button's action event from which the 
+     *           accessible text is retrieved.
      */
     @FXML
     private void insertInput(ActionEvent ev) {
@@ -109,16 +105,14 @@ public class CalcController {
     }
 
     /**
-     * Inserts the accessibility text of a given
-     * button into the input text field at the
-     * current caret position. The text to be
-     * inserted is enclosed in a space each if
-     * no space is present already, with the
-     * exception of the string start or end.
+     * Inserts the accessibility text of a given button into 
+     * the input text field at the current caret position. 
+     * The text to be inserted is enclosed in a space each if
+     * no space is present already, with the exception of the 
+     * string start or end.
      * 
-     * @param ev The given button's action event
-     *           from which the accessible text is
-     *           retrieved.
+     * @param ev The given button's action event from which the 
+     *           accessible text is retrieved.
      */
     @FXML
     private void insertInputWithSpacing(ActionEvent ev) {
