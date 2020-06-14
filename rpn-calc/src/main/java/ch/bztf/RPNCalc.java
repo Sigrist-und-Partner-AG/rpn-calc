@@ -17,20 +17,21 @@ public class RPNCalc {
     private static final int DEFAULT_PRECISION = 3;
 
     /**
-     * The result of the previous calculation.
-     * This is overwritten every time an RPN
-     * expression is successfully evaluated.
-     * This field is {@code null} if no result
-     * is available.
+     * The output precision of {@link #result} as the number of decimal places,
+     * ranging from 0 to {@link #MAX_PRECISION}.
+     */
+    private int precision = DEFAULT_PRECISION;
+
+    /**
+     * The immediate result of the previous calculation.
+     * This is overwritten every time an RPN expression is successfully evaluated,
+     * as long as exactly one operand remains on the stack (perfect evaluation).
+     * This field is {@code null} if this is not the case.
      */
     private Double result = null;
 
-    /**
-     * The output precision of {@link #result}
-     * as the number of decimal places, ranging
-     * from 0 to {@link #MAX_PRECISION}.
-     */
-    private int precision = DEFAULT_PRECISION;
+    /** The complete result of the previous calculation. */
+    private Stack<Double> leftover = null;
 
     /** The registers from "a" to "z" (lowercase only) for saving values. */
     private Map<String, Double> registers = new HashMap<String, Double>();
@@ -52,8 +53,11 @@ public class RPNCalc {
     } 
 
     /** 
-     * Clears all registers by setting them to zero.
+     * Clears all default registers by setting them to zero.
      * It is legal to use this function for initialization.
+     * <p>
+     * Note that this function never affects manually added registers.
+     * </p>
      */
     public void clearRegisters() {
         for (char c = 'a'; c <= 'z'; c++) {
@@ -73,10 +77,10 @@ public class RPNCalc {
     }
 
     /**
-     * Sets the value of the specified register to the given double.
+     * Stores a given value in the specified register.
      * 
-     * @param reg The register to be assigned to.
-     * @param val The value {@code reg} will be set to.
+     * @param reg The register the value will be stored in.
+     * @param val The value to be stored in {@code reg}.
      * @return Whether the assignment to {@code reg} succeeded.
      *         {@code false} is returned if the register does not exist.
      */
@@ -89,8 +93,24 @@ public class RPNCalc {
     }
 
     /**
-     * Helper function which validates that a given
-     * precision is in the permitted range.
+     * Adds a new register and initializes it to the given value.
+     * 
+     * @param reg The name of the register to be added.
+     * @param val The initial value to be stored in {@code reg}.
+     * @return Whether the creation of {@code reg} succeeded.
+     *         {@code false} is returned if the register already existed,
+     *         in which case the initialization will also not take place.
+     */
+    public boolean addRegister(String reg, Double val) {
+        if (!registers.containsKey(reg)) {
+            registers.put(reg, val);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Helper function which validates the range of a given precision.
      * 
      * @param precision The precision to be checked.
      * @throws IllegalArgumentException Raised if the precision is invalid.
@@ -125,10 +145,9 @@ public class RPNCalc {
     /**
      * Shifts the output precision by a given number of decimal places.
      * 
-     * @param places The amount of places the current output
-     *               precision is to be shifted by. This value
-     *               may be positive or negative. A positive
-     *               value means that more places are added.
+     * @param places The amount of places the current output precision is to 
+     *               be shifted by. This value may be positive or negative. 
+     *               A positive value means that more places are added.
      * @return The new precision.
      * @throws IllegalArgumentException Raised if the new precision is invalid.
      */
@@ -136,16 +155,6 @@ public class RPNCalc {
         int new_precision = this.precision + places;
         checkPrecision(new_precision);
         return (this.precision = new_precision);
-    }
-
-    /**
-     * Gets the last result in numerical form.
-     * 
-     * @return The previous calculation result.
-     *         {@code null} if none is available. 
-     */
-    public Double getLastResult() {
-        return this.result;
     }
 
     /**
@@ -162,22 +171,59 @@ public class RPNCalc {
     }
 
     /**
+     * Gets the last result in numerical form.
+     * 
+     * @return The previous calculation result.
+     *         {@code null} if none is available. 
+     */
+    public Double getLastResult() {
+        return this.result;
+    }
+
+    /**
      * Retrieves the last result as a String and formats
      * the output using the currently set precision.
      * 
      * @return The fully formatted result.
-     *         The empty string is returned if {@code null}
-     *         is passed in for {@code num}.
+     *         The empty string is returned if none is available.
      */
     public String getFormattedLastResult() {
         return formatNumber(this.result);
     }
 
-    // getFormattedLastSequence
+    /**
+     * Retrieves the complete result stack of the last calculation.
+     * 
+     * @return The result stack. If {@link #getLastResult()} returns a 
+     *         non-{@code null} value, it will hold exactly one element.
+     */
+    public Stack<Double> getLastStack() {
+        return this.leftover;
+    }
 
-
-
-
+    /**
+     * Retrieves the complete result stack of the last calculation as a
+     * string and formats each value using the currently set precision.
+     * The values are delimited by a single space each.
+     * 
+     * @return The fully formatted result stack.
+     *         The empty string is returned if it is empty or none is available.
+     */
+    public String getFormattedLastStack() {
+        if (this.leftover != null) {
+            @SuppressWarnings("unchecked")                    // Necessary for cast
+            var stack = (Stack<Double>)this.leftover.clone(); // Don't mutate field
+            var builder = new StringBuilder(); // More efficient for concatenation
+            while (!stack.isEmpty()) {
+                builder.insert(0, formatNumber(stack.pop()));
+                if (!stack.isEmpty()) {
+                    builder.insert(0, " ");
+                }
+            }
+            return builder.toString();
+        }
+        return "";
+    }
 
     /**
      * Checks whether a given operator has unary arity.
@@ -259,8 +305,7 @@ public class RPNCalc {
      * 
      * @param stack The stack holding any number of possible operands.
      * @param reg The register the topmost stack value will be stored in.
-     * @return The topmost value of the stack.
-     *         It is only peeked, not popped.
+     * @return The topmost value of the stack. It is only peeked, not popped.
      * @throws EmptyStackException Raised on stack underflow.
      */
     private Double store(Stack<Double> stack, String reg) throws EmptyStackException {
@@ -308,26 +353,27 @@ public class RPNCalc {
      *         If the expression cannot be reduced to a
      *         single number, {@code null} is returned.
      */
-    public Double eval(String expr) {
+    public Double eval(String expr) throws RPNCalcException {
 
         /* Save registers so we can restore them in case of error. */
         Map<String, Double> saved_regs = new HashMap<String, Double>(this.registers);
 
         var stack = new Stack<Double>();  // Operand stack
-        String[] tokens = tokenize(expr); // Form iterable tokens
+        String[] tokens = tokenize(expr); // Iterable expression
+        int i = 0;                        // Token index
 
         try {
 
            /*
             * The algorithm abides by the following rules:
-            * - Literal values are pushed onto the stack.
-            * - If a register is followed by a '<-' token,
-            *   the topmost value of the stack is stored in it.
-            *   Otherwise, the register is pushed onto the stack.
-            * - Operators pop the required number of operands off
-            *   the stack and push the result back onto the stack.
+            * 1. Literal values are pushed onto the stack.
+            * 2. If a register is followed by a '<-' token,
+            *    the topmost value of the stack is stored in it.
+            *    Otherwise, the register is pushed onto the stack.
+            * 3. Operators pop the required number of operands off
+            *    the stack and push the result back onto the stack.
             */
-            for (int i = 0; i < tokens.length; i++)
+            for (; i < tokens.length; i++) {
                 try {
                     stack.push(Double.parseDouble(tokens[i])); // Literals are operands
                 } catch (NumberFormatException e) {
@@ -343,16 +389,21 @@ public class RPNCalc {
                         stack.push(apply(stack, tokens[i]));   // Apply operator
                     }
                 }
-            } 
+            } // end for()
 
         } catch (EmptyStackException e) {
-
+            this.registers = saved_regs;
+            throw new RPNCalcException("Stack underflow", tokens[i], i);
         } catch (ArithmeticException e) {
-
+            this.registers = saved_regs;
+            throw new RPNCalcException("Division by zero", tokens[i], i);
         } catch (IllegalArgumentException e) {
-
+            this.registers = saved_regs;
+            throw new RPNCalcException("Unrecognized symbol", tokens[i], i);
         }
 
-        return (stack.size() == 1 ? stack.pop() : null);
+        this.leftover = stack;                                   // Complete result
+        this.result = (stack.size() == 1 ? stack.peek() : null); // Immediate result 
+        return this.result;
     }
 }
