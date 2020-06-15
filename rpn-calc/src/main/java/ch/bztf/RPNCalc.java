@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Stack;
 
 /**
+ * Contains the entire logic for evaluating RPN expressions.
+ * Expressions are passed in via {@link RPNCalc#eval()}.
+ * 
  * @author Timothy R. Schmid
  */
 public class RPNCalc {
@@ -388,10 +391,9 @@ public class RPNCalc {
                     Double reg_val = getRegister(tokens[i]);   // Check if register
                     if (reg_val != null) {
                         if (peek4Store(tokens, i)) {  
-                            store(stack, tokens[i]); // Treat register as lvalue
-                            i++;                     // Skip next token (store)
+                            store(stack, tokens[i++]); // Treat register as lvalue
                         } else {
-                            stack.push(reg_val);     // Treat register as rvalue
+                            stack.push(reg_val);       // Treat register as rvalue
                         }
                     } else {              
                         stack.push(apply(stack, tokens[i]));   // Apply operator

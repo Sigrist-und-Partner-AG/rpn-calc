@@ -1,6 +1,8 @@
 package ch.bztf;
 
 /**
+ * Class for custom exceptions thrown by {@link RPNCalc}.
+ * 
  * @author Timothy R. Schmid
  */
 public class RPNCalcException extends Exception {
