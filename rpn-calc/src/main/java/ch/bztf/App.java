@@ -14,6 +14,17 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+    private RPNCalc makeCalcInstance() {
+        RPNCalc calc = new RPNCalc();
+        calc.addRegister("PI",  Math.PI);
+        calc.addRegister("E",   Math.E);
+        calc.addRegister("MIN", Double.MIN_VALUE);
+        calc.addRegister("MAX", Double.MAX_VALUE);
+        calc.addRegister("INF", Double.POSITIVE_INFINITY);
+        calc.addRegister("NAN", Double.NaN);
+        return calc;
+    }
+
     /**
      * JavaFX start hook.
      * This is used to bring the user interface up.
@@ -24,7 +35,13 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/ch/bztf/calc.fxml"));
+        /* Load FXML */
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ch/bztf/calc.fxml"));
+        Parent root = loader.load();
+        /* Inject calculator instance into controller */
+        CalcController controller = loader.<CalcController>getController();
+        controller.initialize(makeCalcInstance());
+        /* Set window properties */
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("RPN Calculator");

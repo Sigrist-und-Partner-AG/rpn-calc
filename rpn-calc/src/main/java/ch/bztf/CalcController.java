@@ -26,11 +26,22 @@ public class CalcController {
     @FXML
     private TextField error;
 
+    /** The calculator instance used for evaluating expressions. */
+    private RPNCalc calc;
+
+    /**
+     * Sets the internal calculator instance to the one passed in.
+     * 
+     * @param calc The new calculator instance.
+     */
+    public void initialize(RPNCalc calc) {
+        this.calc = calc;
+    }
+
     /**
      * Wipes the input field completely.
      * 
-     * @param ev The action event.
-     *           It is unused by this function.
+     * @param ev The action event. It is unused by this function.
      */
     @FXML
     private void clearInput(ActionEvent ev) {
@@ -47,8 +58,7 @@ public class CalcController {
      *       "backspace" key on the keyboard.
      * </p>
      * 
-     * @param ev The action event.
-     *           It is unused by this function.
+     * @param ev The action event. It is unused by this function.
      */
     @FXML
     private void deleteInputByChar(ActionEvent ev) {
@@ -75,8 +85,7 @@ public class CalcController {
      *           hasn't been set, in which case this
      *           function simply sets the error text.
      * 
-     * @param ev The action event.
-     *           It is unused by this function.
+     * @param ev The action event. It is unused by this function.
      */
     @FXML
     private void deleteInputByWord(ActionEvent ev) {
@@ -87,7 +96,7 @@ public class CalcController {
             r.keyRelease(KeyCode.BACK_SPACE);
             r.keyRelease(KeyCode.CONTROL);
         } catch (SecurityException e) {
-            error.setText("Error: permission 'createRobot' not granted");
+            error.setText("Permission 'createRobot' not granted");
         }
     }
 
@@ -133,18 +142,66 @@ public class CalcController {
         input.insertText(pos, prepend + button.getAccessibleText() + append);
     }
 
+    /**
+     * Helper function that sets both the input and error text fields.
+     * The cursor is automatically set to the end of the input text field
+     * while the error text field is cleared.
+     * 
+     * @param result The string to be assigned to the input text field.
+     *               A single space will be appended to it.
+     */
+    private void setResult(String result) {
+        input.setText(result + " ");
+        input.end();
+        error.setText("");
+    }
+
+    /**
+     * Evaluates the expression currently set in the input text field.
+     * 
+     * @param ev The action event. It is unused by this function.
+     */
     @FXML
     private void evalInput(ActionEvent ev) {
-        
+        try {
+            calc.eval(input.getText());
+            setResult(calc.getFormattedLastStack());
+        } catch (RPNCalcException e) {
+            error.setText(e.getMessage());
+        }
     }
 
+    /**
+     * Increases calculator output precision by one.
+     * This will trigger the current stack to be printed to
+     * the input text field again, but with the new precision. 
+     * 
+     * @param ev The action event. It is unused by this function.
+     */
     @FXML
     private void increasePrecision(ActionEvent ev) {
-
+        try {
+            calc.shiftPrecision(+1);
+            setResult(calc.getFormattedLastStack());
+        } catch (IllegalArgumentException e) {
+            error.setText("Maximum precision reached");
+        }
     }
 
+    /**
+     * Decreases calculator output precision by one.
+     * This will trigger the current stack to be printed to
+     * the input text field again, but with the new precision. 
+     * 
+     * @param ev The action event. It is unused by this function.
+     */
     @FXML
     private void decreasePrecision(ActionEvent ev) {
-
+        try {
+            calc.shiftPrecision(-1);
+            setResult(calc.getFormattedLastStack());
+        } catch (IllegalArgumentException e) {
+            error.setText("Minimum precision reached");
+        }
     }
 }
