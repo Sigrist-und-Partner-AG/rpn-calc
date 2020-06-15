@@ -123,14 +123,14 @@ public class RPNCalcTest {
     @Test
     public void testEvaluatingExpressionStoresCorrectValueInRegister() throws RPNCalcException {
         /* Default register */
-        assertEquals(1.0, calc.eval("1.0 a <-"), delta);
+        assertEquals(1.0, calc.eval("1.0 a <="), delta);
         assertEquals(1.0, calc.getRegister("a"), delta);
         /* Manually added register */
         assertTrue(calc.addRegister("special", 0.0));
-        assertEquals(3.5, calc.eval("2.0 1.5 + special <-"), delta);
+        assertEquals(3.5, calc.eval("2.0 1.5 + special <="), delta);
         assertEquals(3.5, calc.getRegister("special"), delta);
         /* Register chaining */
-        assertEquals(1.0, calc.eval("a b <- c <- special <-"), delta);
+        assertEquals(1.0, calc.eval("a b <= c <= special <="), delta);
         assertEquals(1.0, calc.getRegister("a"), delta);
         assertEquals(1.0, calc.getRegister("b"), delta);
         assertEquals(1.0, calc.getRegister("c"), delta);
@@ -193,7 +193,7 @@ public class RPNCalcTest {
     public void testGettingResultsReturnsStackOnPartialEvaulation() throws RPNCalcException {
         calc.setPrecision(2);
         calc.setRegister("a", 120.765);
-        calc.eval("a 45 3.4 c <- 2 +");
+        calc.eval("a 45 3.4 c <= 2 +");
         /* Formatted results */
         assertEquals("", calc.getFormattedLastResult());
         assertEquals("120.77 45.00 5.40", calc.getFormattedLastStack());

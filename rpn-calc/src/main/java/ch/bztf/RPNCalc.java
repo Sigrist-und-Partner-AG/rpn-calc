@@ -328,7 +328,7 @@ public class RPNCalc {
     private boolean peek4Store(String[] tokens, int reg_index) {
         return (
             tokens.length > reg_index + 1 &&
-            tokens[reg_index + 1].equals("<-") 
+            tokens[reg_index + 1].equals("<=") 
         );
     }
 
@@ -375,7 +375,7 @@ public class RPNCalc {
            /*
             * The algorithm abides by the following rules:
             * 1. Literal values are pushed onto the stack.
-            * 2. If a register is followed by a '<-' token,
+            * 2. If a register is followed by a '<=' token,
             *    the topmost value of the stack is stored in it.
             *    Otherwise, the register is pushed onto the stack.
             * 3. Operators pop the required number of operands off
