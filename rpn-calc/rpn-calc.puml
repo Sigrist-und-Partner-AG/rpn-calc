@@ -1,7 +1,7 @@
-@startuml
+@startuml rpn-calc
  
 class App extends Application {
-    + static main (String[] args) : void
+    + static main(String[] args) : void
     + start(Stage stage) throws Exception : void
     - makeCalcInstance() : RPNCalc
 }
@@ -21,7 +21,7 @@ class CalcController {
     - @FXML decreasePrecision(ActionEvent ev) : void
     - setResult(String result) : void
 }
- 
+
 class RPNCalc {
     + static final MAX_PRECISION : int
     - static final DEFAULT_PRECISION : int
@@ -38,7 +38,7 @@ class RPNCalc {
     + getPrecision() : int
     + setPrecision(int precision) throws IllegalArgumentException : int
     + shiftPrecision(int places) throws IllegalArgumentException : int
-   + getLastResult() : Double
+    + getLastResult() : Double
     + getLastStack() : Stack<Double>
     + getFormattedLastResult() : String
     + getFormattedLastStack() : String
