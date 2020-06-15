@@ -144,6 +144,14 @@ public class RPNCalcTest {
     }
 
     @Test
+    public void testEvaluatingExpressionThrowsOnBlankOrEmpty() {
+        assertThrows(RPNCalcException.class, () -> calc.eval(""));
+        assertThrows(RPNCalcException.class, () -> calc.eval(" "));
+        assertThrows(RPNCalcException.class, () -> calc.eval("\t"));
+        assertThrows(RPNCalcException.class, () -> calc.eval("   \t  "));
+    }
+
+    @Test
     public void testEvaluatingExpressionThrowsOnStackUnderflow() {
         assertThrows(RPNCalcException.class, () -> calc.eval("neg"));
         assertThrows(RPNCalcException.class, () -> calc.eval("pow"));

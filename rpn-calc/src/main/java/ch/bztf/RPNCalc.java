@@ -351,15 +351,24 @@ public class RPNCalc {
      * @return The immediate result in numerical form.
      *         If the expression cannot be reduced to a
      *         single number, {@code null} is returned.
+     * @throws RPNCalcException Raised in any of the following cases:
+     *         - The expression {@code expr} is blank or empty
+     *         - Stack underflow occurred while applying an operator
+     *         - An unrecognized symbol is encountered during parsing
      */
     public Double eval(String expr) throws RPNCalcException {
-
-        /* Save registers so we can restore them in case of error. */
-        Map<String, Double> saved_regs = new HashMap<String, Double>(this.registers);
 
         var stack = new Stack<Double>();  // Operand stack
         String[] tokens = tokenize(expr); // Iterable expression
         int i = 0;                        // Token index
+
+        /* Filter out expressions containing only whitespace. */
+        if (tokens[0].equals("")) {
+            throw new RPNCalcException("No expression available");
+        }
+
+        /* Save registers so we can restore them in case of error. */
+        Map<String, Double> saved_regs = new HashMap<String, Double>(this.registers);
 
         try {
 
