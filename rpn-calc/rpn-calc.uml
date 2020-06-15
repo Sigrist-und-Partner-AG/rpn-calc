@@ -1,0 +1,62 @@
+@startuml
+ 
+class App extends Application {
+    + static main (String[] args) : void
+    + start(Stage stage) throws Exception : void
+    - makeCalcInstance() : RPNCalc
+}
+ 
+class CalcController {
+    - @FXML input : TextField
+    - @FXML error : TextField
+    - calc : RPNCalc
+    + initialize(RPNCalc calc) : void
+    - @FXML clearInput(ActionEvent ev) : void
+    - @FXML deleteInputByChar(ActionEvent ev) : void
+    - @FXML deleteInputByWord(ActionEvent ev) : void
+    - @FXML insertInput(ActionEvent ev) : void
+    - @FXML insertInputWithSpacing(ActionEvent ev) : void
+    - @FXML evalInput() : void
+    - @FXML increasePrecision(ActionEvent ev) : void
+    - @FXML decreasePrecision(ActionEvent ev) : void
+    - setResult(String result) : void
+}
+ 
+class RPNCalc {
+    + static final MAX_PRECISION : int
+    - static final DEFAULT_PRECISION : int
+    - precision : int
+    - result : Double
+    - leftover : Stack<Double>
+    - registers : Map<String, Double>
+    + <<Create>> RPNCalc()
+    + <<Create>> RPNCalc(int precision) throws IllegalArgumentException
+    + getRegister(String reg) : Double
+    + setRegister(String reg, Double val) : boolean
+    + addRegister(String reg, Double val) : boolean
+    + clearRegisters() : void
+    + getPrecision() : int
+    + setPrecision(int precision) throws IllegalArgumentException : int
+    + shiftPrecision(int places) throws IllegalArgumentException : int
+   + getLastResult() : Double
+    + getLastStack() : Stack<Double>
+    + getFormattedLastResult() : String
+    + getFormattedLastStack() : String
+    + eval(String expr) throws RPNCalcException : Double
+    - checkPrecision(int precision) throws IllegalArgumentException : void
+    - formatNumber(Double num) : String
+    - isUnary(String op) : boolean
+    - isBinary(String op) : boolean
+    - apply(Stack<Double> stack, String op) throws EmptyStackException, IllegalArgumentException : Double
+    - store(Stack<Double>, String reg) throws EmptyStackException : Double
+    - peek4Store(String[] tokens, int reg_index) : boolean
+    - tokenize(String expr) : String[]
+}
+ 
+class RPNCalcException extends Exception {
+    - serialVersionUID : long
+    + <<Create>> RPNCalcException(String message)
+    + <<Create>> RPNCalcException(String message, String token, int index)
+}
+ 
+@enduml
