@@ -29,6 +29,7 @@ class RPNCalc {
     - result : Double
     - leftover : Stack<Double>
     - registers : Map<String, Double>
+    - interface NAryOperation
     + <<Create>> RPNCalc()
     + <<Create>> RPNCalc(int precision) throws IllegalArgumentException
     + getRegister(String reg) : Double
@@ -47,6 +48,8 @@ class RPNCalc {
     - formatNumber(Double num) : String
     - isUnary(String op) : boolean
     - isBinary(String op) : boolean
+    - isNAry(String op) : boolean
+    - applyNAry(Stack<Double> stack, NAryOperation op) throws EmptyStackException : Double 
     - apply(Stack<Double> stack, String op) throws EmptyStackException, IllegalArgumentException : Double
     - store(Stack<Double>, String reg) throws EmptyStackException : Double
     - peek4Store(String[] tokens, int reg_index) : boolean

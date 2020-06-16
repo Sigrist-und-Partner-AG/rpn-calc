@@ -50,8 +50,11 @@ If the stack yields multiple values following a calculation,
 the same amount of rounding is applied to all of them.
 
 ## Operators
-The calculator supports unary and binary operators.
-Operators of higher arities are currently unsupported.
+Besides supporting simple unary and binary operators,
+the calculator can handle n-ary operators which take
+all operands as input that are currently on the stack.
+N-ary operators are variadic in nature and can be
+applied to any number of arguments starting from 1.
 
 Unary Operator | Example | Result | Description
 :-------------:| ------- |:------:| -----------
@@ -68,6 +71,14 @@ Binary Operator | Example | Result | Description
 %   | -21 4 % | -1   | Remainder
 pow | 2 3 pow |  8   | Raise to power of
 <=  | 17 a <= | 17   | Store in register\*
+
+N-ary Operator | Example | Result | Description
+:-------------:| ------- |:------:| -----------
+sum | 1 2 3 sum   |  6   | Summation     
+avg | 4 5 avg     |  4.5 | Average
+min | 9 -3 4 min  | -3   | Minimum
+max | 5 10 2 max  | 10   | Maximum
+cnt | 1 3 5 7 cnt |  4   | Count
 
 \*The operand on the right-hand side of a store operation
 must be a register since an assignable location is required.

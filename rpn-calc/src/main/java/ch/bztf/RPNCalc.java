@@ -7,11 +7,31 @@ import java.util.Stack;
 
 /**
  * Contains the entire logic for evaluating RPN expressions.
- * Expressions are passed in via {@link RPNCalc#eval()}.
+ * Expressions are passed in via {@link RPNCalc#eval(String)}.
  * 
  * @author Timothy R. Schmid
  */
 public class RPNCalc {
+
+    /** Required for evaluating n-ary operators via lambda. */
+    @FunctionalInterface
+    private interface NAryOperation {
+
+        /**
+         * Applies an n-ary operator a single time.
+         * Doing this multiple times in succession yields the final result.
+         * 
+         * @param curr The operand most recently popped off the stack.
+         * @param acc The accumulated result of prior calculations.
+         *            If {@code n} is equal to 1, this will be {@code null}.
+         * @param n The nth time the function is being applied.
+         *          This argument is 1 the first time around.
+         * @return The calculation result of this single application.
+         *         Assume that the return value is fed back into {@code acc}
+         *         on every subsequent iteration.
+         */
+        Double apply(Double curr, Double acc, int n);
+    }
 
     /** The maximum output precision allowed. */
     public static final int MAX_PRECISION = 15;
@@ -268,12 +288,52 @@ public class RPNCalc {
     }
 
     /**
+     * Checks whether a given operator has a flexible arity
+     * of N, where N is the number of operands on the stack.
+     * 
+     * @param op The operator in string form.
+     * @return {@code true} if {@code op} is an N-ary operator,
+     *         {@code false} otherwise. 
+     */
+    private boolean isNAry(String op) {
+        switch (op) {
+            case "sum":
+            case "avg":
+            case "min":
+            case "max":
+            case "cnt":
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Applies an n-ary operator to a stack in its current state.
+     * Operands are popped off the stack until it is completely empty.
+     * 
+     * @param stack The stack holding any number of possible operands.
+     * @param op The operator to be applied, which is best passed in as a lambda.
+     *           It is applied as many times as there are operands on the stack.
+     * @return The final calculation result after repeatedly applying the operator. 
+     * @throws EmptyStackException Raised on stack underflow.
+     */
+    private Double applyNAry(Stack<Double> stack, NAryOperation op) throws EmptyStackException {
+        int n = 1;         // The nth time the operator is being applied
+        Double acc = null; // The accumulated result
+        do {
+            acc = op.apply(stack.pop(), acc, n++);
+        } while (!stack.empty());
+        return acc;
+    }
+
+    /**
      * Applies an operator to a stack in its current state.
      * As many operands are popped off the stack as needed.
      * 
      * @param stack The stack holding any number of possible operands.
      * @param op The operator to be applied.
-     *           Both unary and binary operators are supported.
+     *           Unary, binary and n-ary operators are supported.
      * @return The calculation result of the operator application. 
      * @throws EmptyStackException Raised on stack underflow.
      * @throws IllegalArgumentException Raised if {@code op} is an unknown operator.
@@ -297,6 +357,14 @@ public class RPNCalc {
                 case "/": return left / right;
                 case "%": return left % right;
                 case "pow": return Math.pow(left, right);
+            }
+        } else if (isNAry(op)) {
+            switch (op) {
+                case "sum": return applyNAry(stack, (curr, acc, n) -> acc == null ? curr : curr + acc);
+                case "avg": return applyNAry(stack, (curr, acc, n) -> acc == null ? curr : (curr + acc * (n-1)) / n);
+                case "min": return applyNAry(stack, (curr, acc, n) -> acc == null ? curr : Math.min(curr, acc));
+                case "max": return applyNAry(stack, (curr, acc, n) -> acc == null ? curr : Math.max(curr, acc));
+                case "cnt": return applyNAry(stack, (curr, acc, n) -> Double.valueOf(n));
             }
         }
         throw new IllegalArgumentException("Unknown operator '" + op + "'");
