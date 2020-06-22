@@ -66,7 +66,7 @@ Binary Operator | Example | Result | Description
 :--------------:| ------- |:------:| -----------
 \+  | 2 3 +   |  5   | Addition
 \-  | 1 4 -   | -3   | Subtraction
-\*  | 2 5 *   | 10   | Multiplication
+\*  | 2 5 \*  | 10   | Multiplication
 /   | 3 2 /   |  1.5 | Division
 %   | -21 4 % | -1   | Remainder
 pow | 2 3 pow |  8   | Raise to power of
