@@ -167,3 +167,18 @@ Execute the following to run all unit tests:
 cd rpn-calc
 mvn test
 ```
+
+## Bundling
+Issue the following commands to build a so-called uber-`.jar`:
+```shell
+cd rpn-calc
+mvn clean package
+```
+This will automatically execute all unit tests prior to bundling.
+The shaded file can be found at `rpn-calc/target/rpn-calc-1.0-SNAPSHOT.jar`.
+It is a non-portable executable that can only be executed on the same platform
+that the project was compiled on. In order to run the application on other
+platforms, the JavaFX SDK must be referenced. This can be achieved by entering:
+```batch
+java -p "path/to/javafx-sdk" --add-modules javafx.controls,javafx.fxml -jar rpn-calc-1.0-SNAPSHOT.jar
+```
