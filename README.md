@@ -1,7 +1,8 @@
 # RPN Calculator
+
 This is a Java project which provides a GUI-based RPN calculator
 capable of processing 64-bit IEEE-754 floating point numbers.
-**RPN** is short for **Reverse Polish Notation** (see the 
+**RPN** is short for **Reverse Polish Notation** (see the
 [Wikipedia entry](https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 for details), also commonly referred to as **Postfix Notation**.
 Some examples follow:
@@ -15,6 +16,7 @@ Infix | Postfix
 3 * (9 - 4) | 3 9 4 - *
 
 ## Usage
+
 Because this calculator evaluates RPN expressions, things are
 a bit different when compared to traditional infix notation.
 
@@ -25,24 +27,27 @@ Another consequence is that calculation results may take on
 more than one value: The entirety of the remaining stack is returned,
 no matter how many operands it contains. Each operand is popped off
 the stack and prepended to the others, so that the topmost stack value
-will appear farthest to the right when output. 
-Thanks to this feature, incomplete calculations can executed, 
+will appear farthest to the right when output.
+Thanks to this feature, incomplete calculations can executed,
 allowing for complex expressions to be broken up into smaller pieces.
 After evaluating a partial expression, one can resume exactly where
 the calculation left off.
 
-In order to evaluate the infix expression `1 + 2 + 3`, either of the 
-following methods is valid (`⏎` is the enter key): 
-```
+In order to evaluate the infix expression `1 + 2 + 3`, either of the
+following methods is valid (`⏎` is the enter key):
+
+```verbatim
 a)  1 ⏎ 2 ⏎ 3 ⏎ + ⏎ + ⏎
 b)  1 2 3 + + ⏎
 ```
+
 Do note however that variant `b)` yields more accurate results
 as no rounding occurs. This is the case when using `a)` due to
-the intermediate steps, and the effects are extremely dependent 
+the intermediate steps, and the effects are extremely dependent
 on the active output precision.
 
 ## Precision
+
 All calculations are performed with the full precision a 64-bit double allows for.
 The *output* precision however can be adjusted via the `<-` and `->` buttons,
 with the result being rounded to the number of digits currently set.
@@ -50,6 +55,7 @@ If the stack yields multiple values following a calculation,
 the same amount of rounding is applied to all of them.
 
 ## Operators
+
 Besides supporting simple unary and binary operators,
 the calculator can handle n-ary operators which take
 all operands as input that are currently on the stack.
@@ -74,7 +80,7 @@ pow | 2 3 pow |  8   | Raise to power of
 
 N-ary Operator | Example | Result | Description
 :-------------:| ------- |:------:| -----------
-sum | 1 2 3 sum   |  6   | Summation     
+sum | 1 2 3 sum   |  6   | Summation
 avg | 4 5 avg     |  4.5 | Average
 min | 9 -3 4 min  | -3   | Minimum
 max | 5 10 2 max  | 10   | Maximum
@@ -86,6 +92,7 @@ In C or C++ terms, this is also known as an *lvalue*.
 See the next section for details concerning registers.
 
 ## Registers
+
 So-called *registers* are provided for the sake of saving and loading values,
 which is useful for carrying over results from one calculation to the next.
 General-purpose registers range from lowercase `a` to `z`, each of which is
@@ -128,21 +135,22 @@ Input | Output
 1 a <= b <= c <= | 1
 20 x <= 40 y <= + | 60
 PI z <= sqrt | 1.772...
-5 f <= f * | 25 
+5 f <= f * | 25
 
 ## Pitfalls
+
 The IEEE-754 standard allows for three sentinel values to appear under
 certain conditions. Once introduced, each of these values will propagate
 through the rest of the expression (although special cases do exist).
 They can appear as the result of a calculation and may serve as inputs as well.
-This includes the assignment of sentinels to registers. 
+This includes the assignment of sentinels to registers.
 
-Sentinel | Example | Description 
+Sentinel | Example | Description
 :-------:| --------| ------------
 NaN       | 0 0 /  | Short for *not a number*
 Infinity  | 1 0 /  | Same as +Infinity
 +Infinity | 1 0 /  | Positive infinity
--Infinity | -1 0 / | Negative infinity 
+-Infinity | -1 0 / | Negative infinity
 
 Input | Output
 ----- | :----:
@@ -152,33 +160,58 @@ Infinity Infinity / | NaN
 Infinity neg  | -Infinity
 -Infinity neg | Infinity
 
+## Development Build
+
+Execute the following commands for an immediate build:
+
+```shell
+cd rpn-calc
+mvn compile
+mvn exec:java -Dexec.mainClass=ch.bztf.Main
+```
+
 ## Documentation
+
 The documentation must be generated before it can be viewed:
+
 ```shell
 cd rpn-calc
 mvn javadoc:javadoc
 ```
+
 This will place the HTML documentation in `rpn-calc/target/site/apidocs/`.
 The main page can be accessed via `index.html`.
 
 ## Testing
+
 Execute the following to run all unit tests:
+
 ```shell
 cd rpn-calc
 mvn test
 ```
 
 ## Bundling
+
 Issue the following commands to build a so-called uber-`.jar`:
+
 ```shell
 cd rpn-calc
 mvn clean package
 ```
+
 This will automatically execute all unit tests prior to bundling.
 The shaded file can be found at `rpn-calc/target/rpn-calc-1.0-SNAPSHOT.jar`.
 It is a non-portable executable that can only be executed on the same platform
 that the project was compiled on. In order to run the application on other
-platforms, the JavaFX SDK must be referenced. This can be achieved by entering:
+platforms, the JavaFX SDK must be referenced. This can be achieved by entering (for example, on a Windows system):
+
 ```batch
 java -p "path/to/javafx-sdk" --add-modules javafx.controls,javafx.fxml -jar rpn-calc-1.0-SNAPSHOT.jar
+```
+
+If supporting other platforms is not required, simply enter this command instead:
+
+```shell
+java -jar target/rpn-calc-1.0-SNAPSHOT.jar
 ```
