@@ -65,6 +65,7 @@ applied to any number of arguments starting from 1.
 Unary Operator | Example | Result | Description
 :-------------:| ------- |:------:| -----------
 neg  | 94 neg  | -94 | Negation
+abs  | -7 abs  |   7 | Absolute value
 pow2 | 8 pow2  |  64 | Raise to power of 2
 sqrt | 16 sqrt |   4 | Square root
 

@@ -92,6 +92,7 @@ public class RPNCalcTest {
     @Test
     public void testEvaluatingUnaryExpressionReturnsCorrectResult() throws RPNCalcException {
         assertEquals(-6.0, calc.eval("6 neg"),    delta);
+        assertEquals( 0.9, calc.eval("-0.9 abs"), delta);
         assertEquals(25.0, calc.eval("5 pow2"),   delta);
         assertEquals(12.0, calc.eval("144 sqrt"), delta);
     }
@@ -126,7 +127,7 @@ public class RPNCalcTest {
 
     @Test
     public void testEvaluatingComplexExpressionReturnsCorrectResult() throws RPNCalcException {
-        assertEquals(18.0,               calc.eval("4 1.5 3 + *"),             delta);
+        assertEquals(18.0,               calc.eval("4 1.5 3 + * abs"),         delta);
         assertEquals( 7.018333135438927, calc.eval("12.143 neg 61.4 + sqrt"),  delta);
         assertEquals(15.0,               calc.eval("1 2 3 sum 1 2 3 avg 5 *"), delta);
     }

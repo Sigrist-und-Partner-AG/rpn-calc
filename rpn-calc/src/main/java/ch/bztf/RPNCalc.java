@@ -258,6 +258,7 @@ public class RPNCalc {
     private boolean isUnary(String op) {
         switch (op) {
             case "neg":
+            case "abs":
             case "pow2":
             case "sqrt":
                 return true;
@@ -344,6 +345,7 @@ public class RPNCalc {
             Double operand = stack.pop();
             switch (op) {
                 case "neg":  return -operand;
+                case "abs":  return Math.abs(operand);
                 case "pow2": return operand * operand;
                 case "sqrt": return Math.sqrt(operand);
             }
