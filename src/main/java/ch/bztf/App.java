@@ -2,6 +2,7 @@ package ch.bztf;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -47,6 +48,13 @@ public class App extends Application {
         stage.setTitle("RPN Calculator");
         stage.setResizable(false);
         stage.show();
+        /* Override application icon in different sizes */
+        stage.getIcons().addAll(
+            new Image(getClass().getResourceAsStream("/ch/bztf/icon-16.png")),
+            new Image(getClass().getResourceAsStream("/ch/bztf/icon-32.png")),
+            new Image(getClass().getResourceAsStream("/ch/bztf/icon-64.png")),
+            new Image(getClass().getResourceAsStream("/ch/bztf/icon-128.png"))
+        );
     }
 
     public static void main(String[] args) {
