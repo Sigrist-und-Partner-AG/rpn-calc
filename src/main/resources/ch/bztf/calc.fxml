@@ -7,8 +7,8 @@
 
 <AnchorPane prefHeight="421.0" prefWidth="260.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bztf.CalcController">
    <children>
-      <TextField fx:id="input" alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" onAction="#evalInput" prefHeight="26.0" prefWidth="233.0" promptText="( Enter an RPN expression )" />
-      <TextField fx:id="error" alignment="TOP_CENTER" editable="false" layoutX="14.0" layoutY="49.0" prefHeight="6.0" prefWidth="233.0" style="-fx-text-fill: #FF0000;">
+      <TextField fx:id="input" alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" onAction="#evalInput" prefHeight="26.0" prefWidth="233.0" promptText="Enter an RPN expression" />
+      <TextField fx:id="error" alignment="TOP_CENTER" editable="false" layoutX="14.0" layoutY="49.0" prefHeight="6.0" prefWidth="233.0" promptText="Copyright © Timothy R. Schmid" style="-fx-text-fill: #FF0000;">
          <font>
             <Font size="10.0" />
          </font>
