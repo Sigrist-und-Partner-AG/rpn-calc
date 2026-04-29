@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/Sigrist-und-Partner-AG/rpn-calc/actions/workflows/ci.yml/badge.svg)](https://github.com/Sigrist-und-Partner-AG/rpn-calc/actions/workflows/ci.yml)
 
+![RPN Calculator UI on Windows](img/screenshot.png)
+
 A JavaFX calculator for evaluating expressions in Reverse Polish Notation.
 
 ## Quickstart
