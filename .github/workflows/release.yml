@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: ${{ matrix.os }} release
+    runs-on: ${{ matrix.runner }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: Linux
+            runner: ubuntu-latest
+            archive: rpn-calc-linux-x86_64.zip
+            command: zip -r
+
+          - os: Windows
+            runner: windows-latest
+            archive: rpn-calc-windows-x86_64.zip
+            command: tar -a -c -f
+
+          - os: macOS
+            runner: macos-latest
+            archive: rpn-calc-macos-arm64.zip
+            command: zip -r
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up JDK 11 and Maven
+        uses: actions/setup-java@v5
+        with:
+          java-version: '11'
+          distribution: temurin
+          cache: maven
+
+      - name: Build runtime image with JLink
+        run: mvn -B clean javafx:jlink
+
+      - name: Add project files
+        shell: bash
+        run: |
+          mkdir -p target/jlink-image/img/
+          cp img/screenshot.png target/jlink-image/img/
+          cp README.md target/jlink-image/
+          cp LICENSE target/jlink-image/
+
+      - name: Compress release artifact
+        run: |
+          cd target/jlink-image
+          ${{ matrix.command }} "../${{ matrix.archive }}" *
+
+      - name: Upload release artifact
+        uses: softprops/action-gh-release@v3
+        with:
+          files: "target/${{ matrix.archive }}"
+          fail_on_unmatched_files: true

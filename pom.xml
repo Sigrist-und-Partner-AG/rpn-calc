@@ -74,6 +74,8 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>ch.bztf/ch.bztf.Main</mainClass>
+                    <launcher>rpn-calc</launcher>
+                    <jlinkImageName>jlink-image</jlinkImageName>
                 </configuration>
             </plugin>
             <plugin>

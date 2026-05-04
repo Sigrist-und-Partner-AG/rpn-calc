@@ -1,6 +1,8 @@
 # RPN Calculator
 
 [![CI](https://github.com/Sigrist-und-Partner-AG/rpn-calc/actions/workflows/ci.yml/badge.svg)](https://github.com/Sigrist-und-Partner-AG/rpn-calc/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/Sigrist-und-Partner-AG/rpn-calc?label=Release)](https://github.com/Sigrist-und-Partner-AG/rpn-calc/releases/latest)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ![RPN Calculator UI on Windows](img/screenshot.png)
 
