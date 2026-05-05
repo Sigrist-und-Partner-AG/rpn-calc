@@ -44,3 +44,5 @@ jobs:
 
       - name: Generate Javadocs
         run: mvn -B javadoc:javadoc
+        env:
+          SOURCE_DATE_EPOCH: '315532802'
