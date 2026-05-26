@@ -10,16 +10,16 @@ A JavaFX calculator for evaluating expressions in Reverse Polish Notation.
 
 ## Quickstart
 
-Assuming JDK 11 and Maven are installed:
+With JDK 11 and Maven installed:
 
 ```shell
 mvn javafx:run
 ```
 
-If you are using Nix, you can install the above dependencies in a single command:
+If you are using Nix, you can run the application directly:
 
 ```shell
-nix develop
+nix run
 ```
 
 ## Usage
@@ -184,14 +184,21 @@ Generate the documentation:
 mvn javadoc:javadoc
 ```
 
-Build the project:
+Build the runtime image:
+
+```shell
+# Launcher at 'target/jlink-image/bin/rpn-calc'
+mvn javafx:jlink
+```
+
+Alternatively, build a shaded JAR:
 
 ```shell
 # Generates 'target/rpn-calc-1.0-SNAPSHOT.jar'
 mvn package
 ```
 
-Run the packaged JAR:
+Run the shaded JAR:
 
 ```shell
 # On the same platform
@@ -200,3 +207,34 @@ java -jar target/rpn-calc-1.0-SNAPSHOT.jar
 # With an explicit JavaFX SDK (for example, on a different platform)
 java -p "$JAVAFX_PATH" --add-modules javafx.controls,javafx.fxml -jar target/rpn-calc-1.0-SNAPSHOT.jar
 ```
+
+### Nix Workflow
+
+Run all tests and verify documentation generation:
+
+```shell
+nix flake check
+```
+
+Generate the documentation:
+
+```shell
+# Index page at 'result/index.html'
+nix build .#javadocs
+```
+
+Build the runtime image:
+
+```shell
+# Launcher at 'result/bin/rpn-calc'
+nix build
+```
+
+Enter the development shell:
+
+```shell
+nix develop
+```
+
+> [!TIP]
+> All documented `mvn` commands work inside the development shell.

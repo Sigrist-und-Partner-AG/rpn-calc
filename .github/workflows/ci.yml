@@ -12,32 +12,19 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: ${{ matrix.environment }} build
+  standard:
+    name: Standard CI
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        environment: [Standard, Nix]
 
     steps:
       - uses: actions/checkout@v6
 
-      - if: matrix.environment == 'Standard'
-        name: Set up JDK 11 and Maven
+      - name: Set up JDK 11 and Maven
         uses: actions/setup-java@v5
         with:
           java-version: '11'
           distribution: temurin
           cache: maven
-
-      - if: matrix.environment == 'Nix'
-        name: Install Nix
-        uses: cachix/install-nix-action@v31
-
-      - if: matrix.environment == 'Nix'
-        name: Set up Nix development environment
-        uses: nicknovitski/nix-develop@v1
 
       - name: Verify with Maven
         run: mvn -B clean verify
@@ -46,3 +33,22 @@ jobs:
         run: mvn -B javadoc:javadoc
         env:
           SOURCE_DATE_EPOCH: '315532802'
+
+      - name: Build runtime image with JLink
+        run: mvn -B javafx:jlink
+
+  nix:
+    name: Nix CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Check flake
+        run: nix flake check
+
+      - name: Build package
+        run: nix build

@@ -50,8 +50,7 @@ jobs:
         run: |
           mkdir -p target/jlink-image/img/
           cp img/screenshot.png target/jlink-image/img/
-          cp README.md target/jlink-image/
-          cp LICENSE target/jlink-image/
+          cp README.md LICENSE target/jlink-image/
 
       - name: Compress release artifact
         run: |
