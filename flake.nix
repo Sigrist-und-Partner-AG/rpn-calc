@@ -35,7 +35,10 @@
         version = "1.0.0";
         src = self;
 
-        mvnJdk = pkgs.jdk11;
+        # JDK 11's jlink can produce non-reproducible runtime images:
+        # "$out/lib/modules" differs between otherwise identical builds.
+        # Make Nix use JDK 17 while retaining Java 11 compatibility.
+        mvnJdk = pkgs.jdk17;
         mvnParameters = "-B";
 
         inherit SOURCE_DATE_EPOCH;
@@ -43,10 +46,7 @@
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          jdk11
-          maven
-        ];
+        packages = [ mvnDefaults.mvnJdk pkgs.maven ];
         inherit LD_LIBRARY_PATH GTK_PATH SOURCE_DATE_EPOCH;
       };
 
@@ -55,7 +55,7 @@
         // {
           pname = "${mvnDefaults.pname}-check";
 
-          mvnHash = "sha256-4JmHuFaHPQrcfQH98eZELwGViD/N3/stMlk4EnLnr2k=";
+          mvnHash = "sha256-K8sNvP1gzbhpWnFA6kYxldAUXo6jInQmvpGJeOsrN1M=";
           mvnParameters = "${mvnDefaults.mvnParameters} verify javadoc:javadoc";
 
           installPhase = ''touch "$out"'';
@@ -69,7 +69,7 @@
           // {
             pname = "${mvnDefaults.pname}-javadocs";
 
-            mvnHash = "sha256-4JmHuFaHPQrcfQH98eZELwGViD/N3/stMlk4EnLnr2k=";
+            mvnHash = "sha256-K8sNvP1gzbhpWnFA6kYxldAUXo6jInQmvpGJeOsrN1M=";
             mvnParameters = "${mvnDefaults.mvnParameters} javadoc:javadoc";
 
             installPhase = ''
@@ -82,7 +82,7 @@
         default = pkgs.maven.buildMavenPackage (
           mvnDefaults
           // {
-            mvnHash = "sha256-FJ65l0+dwYJ1hqBVjpw0zTKXHXTe+SHWVqzICKvP1UA=";
+            mvnHash = "sha256-I2o7mEk028Fnz0o7Rozat9rO7vHOfhKw9f8AGCzrACQ=";
             mvnParameters = "${mvnDefaults.mvnParameters} javafx:jlink";
 
             nativeBuildInputs = [ pkgs.makeWrapper ];

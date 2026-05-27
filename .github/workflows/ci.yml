@@ -34,7 +34,7 @@ jobs:
         env:
           SOURCE_DATE_EPOCH: '315532802'
 
-      - name: Build runtime image with JLink
+      - name: Build runtime image with jlink
         run: mvn -B javafx:jlink
 
   nix:

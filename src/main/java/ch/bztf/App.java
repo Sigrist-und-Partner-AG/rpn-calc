@@ -47,7 +47,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("RPN Calculator");
         stage.setResizable(false);
-        stage.show();
         /* Override application icon in different sizes */
         stage.getIcons().addAll(
             new Image(getClass().getResourceAsStream("/ch/bztf/icon-16.png")),
@@ -55,6 +54,7 @@ public class App extends Application {
             new Image(getClass().getResourceAsStream("/ch/bztf/icon-64.png")),
             new Image(getClass().getResourceAsStream("/ch/bztf/icon-128.png"))
         );
+        stage.show();
     }
 
     public static void main(String[] args) {

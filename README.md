@@ -237,4 +237,4 @@ nix develop
 ```
 
 > [!TIP]
-> All documented `mvn` commands work inside the development shell.
+> All documented `mvn` and `java` commands work inside the development shell.

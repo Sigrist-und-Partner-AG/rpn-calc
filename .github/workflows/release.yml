@@ -42,7 +42,7 @@ jobs:
           distribution: temurin
           cache: maven
 
-      - name: Build runtime image with JLink
+      - name: Build runtime image with jlink
         run: mvn -B clean javafx:jlink
 
       - name: Add project files
