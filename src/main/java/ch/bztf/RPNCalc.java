@@ -257,6 +257,7 @@ public class RPNCalc {
      */
     private boolean isUnary(String op) {
         switch (op) {
+            case "%":
             case "neg":
             case "abs":
             case "pow2":
@@ -280,7 +281,8 @@ public class RPNCalc {
             case "-":
             case "*":
             case "/":
-            case "%":
+            case "mod":
+            case "rem":
             case "pow":
                 return true;
             default:
@@ -344,6 +346,7 @@ public class RPNCalc {
         if (isUnary(op)) {
             Double operand = stack.pop();
             switch (op) {
+                case "%":    return operand / 100.0;
                 case "neg":  return -operand;
                 case "abs":  return Math.abs(operand);
                 case "pow2": return operand * operand;
@@ -357,7 +360,8 @@ public class RPNCalc {
                 case "-": return left - right;
                 case "*": return left * right;
                 case "/": return left / right;
-                case "%": return left % right;
+                case "mod": return left - right * Math.floor(left / right);
+                case "rem": return left % right;
                 case "pow": return Math.pow(left, right);
             }
         } else if (isNAry(op)) {
@@ -469,7 +473,7 @@ public class RPNCalc {
                         stack.push(apply(stack, tokens[i]));   // Apply operator
                     }
                 }
-            } // end for()
+            }
 
         } catch (EmptyStackException e) {
             this.registers = saved_regs;

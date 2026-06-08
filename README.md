@@ -85,6 +85,7 @@ N-ary operators consume all values on the stack.
 
 | Operator | Example   | Result | Description    |
 |:--------:|:----------|-------:|:---------------|
+| `%`      | `1 %`     | `0.01` | Percentage     |
 | `neg`    | `94 neg`  |  `-94` | Negation       |
 | `abs`    | `-7 abs`  |    `7` | Absolute value |
 | `pow2`   | `8 pow2`  |   `64` | Square         |
@@ -92,15 +93,16 @@ N-ary operators consume all values on the stack.
 
 #### Binary Operators
 
-| Operator | Example   | Result | Description         |
-|:--------:|:----------|-------:|:--------------------|
-| `+`      | `2 3 +`   |    `5` | Addition            |
-| `-`      | `1 4 -`   |   `-3` | Subtraction         |
-| `*`      | `2 5 *`   |   `10` | Multiplication      |
-| `/`      | `3 2 /`   |  `1.5` | Division            |
-| `%`      | `-21 4 %` |   `-1` | Remainder           |
-| `pow`    | `2 3 pow` |    `8` | Exponentiation      |
-| `<=`     | `17 a <=` |   `17` | Store in register\* |
+| Operator | Example     | Result | Description         |
+|:--------:|:------------|-------:|:--------------------|
+| `+`      | `2 3 +`     |    `5` | Addition            |
+| `-`      | `1 4 -`     |   `-3` | Subtraction         |
+| `*`      | `2 5 *`     |   `10` | Multiplication      |
+| `/`      | `3 2 /`     |  `1.5` | Division            |
+| `mod`    | `-21 4 mod` |    `3` | Modulo              |
+| `rem`    | `-21 4 rem` |   `-1` | Remainder           |
+| `pow`    | `2 3 pow`   |    `8` | Exponentiation      |
+| `<=`     | `17 a <=`   |   `17` | Store in register\* |
 
 #### N-ary Operators
 

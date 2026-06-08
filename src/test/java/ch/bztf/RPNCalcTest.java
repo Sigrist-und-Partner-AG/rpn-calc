@@ -91,20 +91,22 @@ public class RPNCalcTest {
 
     @Test
     public void testEvaluatingUnaryExpressionReturnsCorrectResult() throws RPNCalcException {
-        assertEquals(-6.0, calc.eval("6 neg"),    delta);
-        assertEquals( 0.9, calc.eval("-0.9 abs"), delta);
-        assertEquals(25.0, calc.eval("5 pow2"),   delta);
-        assertEquals(12.0, calc.eval("144 sqrt"), delta);
+        assertEquals(-0.01, calc.eval("-1 %"),     delta);
+        assertEquals( -6.0, calc.eval("6 neg"),    delta);
+        assertEquals(  0.9, calc.eval("-0.9 abs"), delta);
+        assertEquals( 25.0, calc.eval("5 pow2"),   delta);
+        assertEquals( 12.0, calc.eval("144 sqrt"), delta);
     }
 
     @Test
     public void testEvaluatingBinaryExpressionReturnsCorrectResult() throws RPNCalcException {
-        assertEquals( 5.0, calc.eval("2 3 +"),   delta);
-        assertEquals(-1.0, calc.eval("2 3 -"),   delta);
-        assertEquals( 1.5, calc.eval("3 2 /"),   delta);
-        assertEquals(12.0, calc.eval("4 3 *"),   delta);
-        assertEquals( 2.0, calc.eval("10 4 %"),  delta);
-        assertEquals( 8.0, calc.eval("2 3 pow"), delta);
+        assertEquals( 5.0, calc.eval("2 3 +"),     delta);
+        assertEquals(-1.0, calc.eval("2 3 -"),     delta);
+        assertEquals( 1.5, calc.eval("3 2 /"),     delta);
+        assertEquals(12.0, calc.eval("4 3 *"),     delta);
+        assertEquals( 3.0, calc.eval("-21 4 mod"), delta);
+        assertEquals(-1.0, calc.eval("-21 4 rem"), delta);
+        assertEquals( 8.0, calc.eval("2 3 pow"),   delta);
     }
 
     @Test
@@ -136,7 +138,7 @@ public class RPNCalcTest {
     public void testEvaluatingExpressionIgnoresExtraneousWhitespace() throws RPNCalcException {
         assertEquals(1.0, calc.eval(" 1 1 *"),         delta); // Leading
         assertEquals(5.0, calc.eval("20 4 / "),        delta); // Trailing
-        assertEquals(1.0, calc.eval(" 11 5 % "),       delta); // Surrounding
+        assertEquals(1.0, calc.eval(" 11 5 rem "),     delta); // Surrounding
         assertEquals(4.0, calc.eval("1024   1020\t-"), delta); // Inbetween
     }
 

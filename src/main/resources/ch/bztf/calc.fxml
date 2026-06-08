@@ -154,7 +154,7 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <tooltip><Tooltip text="Remainder" /></tooltip>
+        <tooltip><Tooltip text="Percentage" /></tooltip>
     </Button>
 
     <!-- Row 3: [√] [7] [8] [9] [C] -->

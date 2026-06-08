@@ -57,18 +57,18 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
 
         /* Load FXML */
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/ch/bztf/calc.fxml"));
-        final Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ch/bztf/calc.fxml"));
+        Parent root = loader.load();
 
         /* Inject calculator instance into controller */
-        final CalcController controller = loader.<CalcController>getController();
+        CalcController controller = loader.<CalcController>getController();
         controller.initialize(makeCalcInstance());
 
         /* Enable proportional scaling */
         final double baseWidth = root.prefWidth(-1);
         final double baseHeight = root.prefHeight(-1);
-        final Group scaledGroup = new Group(root);
-        final StackPane scaledRoot = new StackPane(scaledGroup);
+        Group scaledGroup = new Group(root);
+        StackPane scaledRoot = new StackPane(scaledGroup);
         root.scaleXProperty().bind(
             Bindings.min(
                 scaledRoot.widthProperty().divide(baseWidth),
@@ -78,7 +78,7 @@ public class App extends Application {
         root.scaleYProperty().bind(root.scaleXProperty());
 
         /* Set window properties */
-        final Scene scene = new Scene(scaledRoot, baseWidth, baseHeight);
+        Scene scene = new Scene(scaledRoot, baseWidth, baseHeight);
         stage.setScene(scene);
         stage.setTitle("RPN Calculator");
         stage.setResizable(true);
@@ -91,7 +91,7 @@ public class App extends Application {
             new Image(getClass().getResourceAsStream("/ch/bztf/icon-128.png"))
         );
 
-        /* Add extra CSS stylesheets */
+        /* Add custom CSS stylesheet */
         scene.getStylesheets().add(
             getClass().getResource("/ch/bztf/calc.css").toExternalForm()
         );

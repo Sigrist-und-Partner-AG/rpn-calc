@@ -4,6 +4,7 @@ class App extends Application {
     + static main(String[] args) : void
     + start(Stage stage) throws Exception : void
     - makeCalcInstance() : RPNCalc
+    - deferUntilStable(Runnable action) : void
 }
  
 class CalcController {
