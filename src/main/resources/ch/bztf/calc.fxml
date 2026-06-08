@@ -5,72 +5,375 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="421.0" prefWidth="260.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bztf.CalcController">
-   <children>
-      <TextField fx:id="input" alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" onAction="#evalInput" prefHeight="26.0" prefWidth="233.0" promptText="Enter an RPN expression" />
-      <TextField fx:id="error" alignment="TOP_CENTER" editable="false" layoutX="14.0" layoutY="49.0" prefHeight="6.0" prefWidth="233.0" promptText="Copyright © Timothy R. Schmid" style="-fx-text-fill: #FF0000;">
-         <font>
+<AnchorPane prefHeight="421.0"
+            prefWidth="260.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ch.bztf.CalcController">
+
+    <TextField fx:id="input"
+               promptText="Enter an RPN expression"
+               onAction="#evalInput"
+               alignment="CENTER"
+               layoutX="14.0"
+               layoutY="14.0"
+               prefHeight="26.0"
+               prefWidth="233.0" />
+
+    <TextField fx:id="error"
+               promptText="Copyright © Timothy R. Schmid"
+               alignment="CENTER"
+               layoutX="14.0"
+               layoutY="49.0"
+               prefHeight="6.0"
+               prefWidth="233.0"
+               focusTraversable="false"
+               mouseTransparent="true"
+               editable="false"
+               style="-fx-text-fill: #FF0000;">
+        <font>
             <Font size="10.0" />
-         </font>
-      </TextField>
-      <Button accessibleText="c" blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="81.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="c" />
-      <Button accessibleText="d" blendMode="MULTIPLY" focusTraversable="false" layoutX="166.0" layoutY="81.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="d" />
-      <Button accessibleText="&lt;=" blendMode="MULTIPLY" focusTraversable="false" layoutX="216.0" layoutY="81.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="🠔" />
-      <Button accessibleText="a" blendMode="MULTIPLY" focusTraversable="false" layoutX="14.0" layoutY="81.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="a" />
-      <Button accessibleText="b" blendMode="MULTIPLY" focusTraversable="false" layoutX="65.0" layoutY="81.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="b" />
-      <Button accessibleText="*" focusTraversable="false" layoutX="115.0" layoutY="131.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="×" />
-      <Button accessibleText="/" focusTraversable="false" layoutX="166.0" layoutY="131.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="÷" />
-      <Button accessibleText="\%" focusTraversable="false" layoutX="216.0" layoutY="131.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="\%" />
-      <Button accessibleText="+" focusTraversable="false" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="+" />
-      <Button accessibleText="-" focusTraversable="false" layoutX="65.0" layoutY="131.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="−" />
-      <Button accessibleText="8" blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="181.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="8" />
-      <Button accessibleText="9" blendMode="MULTIPLY" focusTraversable="false" layoutX="166.0" layoutY="181.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="9" />
-      <Button focusTraversable="false" layoutX="216.0" layoutY="181.0" mnemonicParsing="false" onAction="#clearInput" prefHeight="30.0" prefWidth="30.0" text="CE" textOverrun="CLIP">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
-      <Button accessibleText="sqrt" focusTraversable="false" layoutX="14.0" layoutY="181.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="√" />
-      <Button accessibleText="7" blendMode="MULTIPLY" focusTraversable="false" layoutX="65.0" layoutY="181.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="7" />
-      <Button accessibleText="5" blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="231.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="5" />
-      <Button accessibleText="6" blendMode="MULTIPLY" focusTraversable="false" layoutX="166.0" layoutY="231.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="6" />
-      <Button focusTraversable="false" layoutX="216.0" layoutY="231.0" mnemonicParsing="false" onAction="#deleteInputByWord" prefHeight="30.0" prefWidth="30.0" text="C" textOverrun="CLIP">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
-      <Button accessibleText="pow2" focusTraversable="false" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="²" />
-      <Button accessibleText="4" blendMode="MULTIPLY" focusTraversable="false" layoutX="65.0" layoutY="231.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="4" />
-      <Button accessibleText="2" blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="281.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="2" />
-      <Button accessibleText="3" blendMode="MULTIPLY" focusTraversable="false" layoutX="166.0" layoutY="281.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="3" />
-      <Button focusTraversable="false" layoutX="216.0" layoutY="281.0" mnemonicParsing="false" onAction="#deleteInputByChar" prefHeight="30.0" prefWidth="30.0" text="⌫" textOverrun="CLIP">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
-      <Button accessibleText="pow" contentDisplay="TOP" focusTraversable="false" layoutX="14.0" layoutY="281.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="yˣ" textAlignment="CENTER" textOverrun="CLIP">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </Button>
-      <Button accessibleText="1" blendMode="MULTIPLY" focusTraversable="false" layoutX="65.0" layoutY="281.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="1" />
-      <Button accessibleText="0" blendMode="MULTIPLY" focusTraversable="false" layoutX="115.0" layoutY="331.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="0" />
-      <Button accessibleText="." focusTraversable="false" layoutX="166.0" layoutY="331.0" mnemonicParsing="false" onAction="#insertInput" prefHeight="30.0" prefWidth="30.0" text="." textAlignment="CENTER" textOverrun="CLIP">
-         <font>
+        </font>
+    </TextField>
+
+    <!-- Row 1: [a] [b] [c] [d] [⇐] -->
+
+    <Button text="a"
+            accessibleText="a"
+            onAction="#insertInputWithSpacing"
+            layoutX="14.0"
+            layoutY="81.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="b"
+            accessibleText="b"
+            onAction="#insertInputWithSpacing"
+            layoutX="65.0"
+            layoutY="81.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="c"
+            accessibleText="c"
+            onAction="#insertInputWithSpacing"
+            layoutX="115.0"
+            layoutY="81.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="d"
+            accessibleText="d"
+            onAction="#insertInputWithSpacing"
+            layoutX="166.0"
+            layoutY="81.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="⇐"
+            accessibleText="&lt;="
+            onAction="#insertInputWithSpacing"
+            layoutX="216.0"
+            layoutY="81.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY"
+            textOverrun="CLIP"
+            style="-fx-padding: 0;">
+        <font>
             <Font size="15.0" />
-         </font>
-      </Button>
-      <Button accessibleText="neg" focusTraversable="false" layoutX="216.0" layoutY="331.0" mnemonicParsing="false" onAction="#insertInputWithSpacing" prefHeight="30.0" prefWidth="30.0" text="(-)" textOverrun="CLIP">
-         <font>
+        </font>
+    </Button>
+
+    <!-- Row 2: [+] [−] [×] [÷] [%] -->
+
+    <Button text="+"
+            accessibleText="+"
+            onAction="#insertInputWithSpacing"
+            layoutX="14.0"
+            layoutY="131.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false" />
+
+    <Button text="−"
+            accessibleText="-"
+            onAction="#insertInputWithSpacing"
+            layoutX="65.0"
+            layoutY="131.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false" />
+
+    <Button text="×"
+            accessibleText="*"
+            onAction="#insertInputWithSpacing"
+            layoutX="115.0"
+            layoutY="131.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false" />
+
+    <Button text="÷"
+            accessibleText="/"
+            onAction="#insertInputWithSpacing"
+            layoutX="166.0"
+            layoutY="131.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false" />
+
+    <Button text="\%"
+            accessibleText="\%"
+            onAction="#insertInputWithSpacing"
+            layoutX="216.0"
+            layoutY="131.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false" />
+
+    <!-- Row 3: [√] [7] [8] [9] [C] -->
+
+    <Button text="√"
+            accessibleText="sqrt"
+            onAction="#insertInputWithSpacing"
+            layoutX="14.0"
+            layoutY="181.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false" />
+
+    <Button text="7"
+            accessibleText="7"
+            onAction="#insertInput"
+            layoutX="65.0"
+            layoutY="181.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="8"
+            accessibleText="8"
+            onAction="#insertInput"
+            layoutX="115.0"
+            layoutY="181.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="9"
+            accessibleText="9"
+            onAction="#insertInput"
+            layoutX="166.0"
+            layoutY="181.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="C"
+            onAction="#clearInput"
+            layoutX="216.0"
+            layoutY="181.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false">
+        <font>
+            <Font size="10.0" />
+        </font>
+    </Button>
+
+    <!-- Row 4: [x²] [4] [5] [6] [CE] -->
+
+    <Button text="x²"
+            accessibleText="pow2"
+            onAction="#insertInputWithSpacing"
+            layoutX="14.0"
+            layoutY="231.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false">
+        <font>
             <Font size="12.0" />
-         </font>
-      </Button>
-      <Button focusTraversable="false" layoutX="14.0" layoutY="331.0" mnemonicParsing="false" onAction="#decreasePrecision" prefHeight="30.0" prefWidth="30.0" text="↤" />
-      <Button focusTraversable="false" layoutX="65.0" layoutY="331.0" mnemonicParsing="false" onAction="#increasePrecision" prefHeight="30.0" prefWidth="30.0" text="↦" />
-      <Button focusTraversable="false" layoutX="14.0" layoutY="380.0" mnemonicParsing="false" onAction="#evalInput" prefHeight="30.0" prefWidth="233.0" text="=">
-         <font>
+        </font>
+    </Button>
+
+    <Button text="4"
+            accessibleText="4"
+            onAction="#insertInput"
+            layoutX="65.0"
+            layoutY="231.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="5"
+            accessibleText="5"
+            onAction="#insertInput"
+            layoutX="115.0"
+            layoutY="231.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="6"
+            accessibleText="6"
+            onAction="#insertInput"
+            layoutX="166.0"
+            layoutY="231.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="CE"
+            onAction="#deleteInputByWord"
+            layoutX="216.0"
+            layoutY="231.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false">
+        <font>
+            <Font size="10.0" />
+        </font>
+    </Button>
+
+    <!-- Row 5: [yˣ] [1] [2] [3] [⌫] -->
+
+    <Button text="yˣ"
+            accessibleText="pow"
+            onAction="#insertInputWithSpacing"
+            layoutX="14.0"
+            layoutY="281.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false">
+        <font>
+            <Font size="12.0" />
+        </font>
+    </Button>
+
+    <Button text="1"
+            accessibleText="1"
+            onAction="#insertInput"
+            layoutX="65.0"
+            layoutY="281.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="2"
+            accessibleText="2"
+            onAction="#insertInput"
+            layoutX="115.0"
+            layoutY="281.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="3"
+            accessibleText="3"
+            onAction="#insertInput"
+            layoutX="166.0"
+            layoutY="281.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="⌫"
+            onAction="#deleteInputByChar"
+            layoutX="216.0"
+            layoutY="281.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false">
+        <font>
+            <Font size="10.0" />
+        </font>
+    </Button>
+
+    <!-- Row 6: [↤] [↦] [0] [.] [(-)] -->
+
+    <Button text="↤"
+            onAction="#decreasePrecision"
+            layoutX="14.0"
+            layoutY="331.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false" />
+
+    <Button text="↦"
+            onAction="#increasePrecision"
+            layoutX="65.0"
+            layoutY="331.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false" />
+
+    <Button text="0"
+            accessibleText="0"
+            onAction="#insertInput"
+            layoutX="115.0"
+            layoutY="331.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false"
+            blendMode="MULTIPLY" />
+
+    <Button text="."
+            accessibleText="."
+            onAction="#insertInput"
+            layoutX="166.0"
+            layoutY="331.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false">
+        <font>
             <Font size="15.0" />
-         </font>
-      </Button>
-   </children>
+        </font>
+    </Button>
+
+    <Button text="(-)"
+            accessibleText="neg"
+            onAction="#insertInputWithSpacing"
+            layoutX="216.0"
+            layoutY="331.0"
+            prefWidth="30.0"
+            prefHeight="30.0"
+            focusTraversable="false">
+        <font>
+            <Font size="12.0" />
+        </font>
+    </Button>
+
+    <!-- Row 7: [=] -->
+
+    <Button text="="
+            onAction="#evalInput"
+            layoutX="14.0"
+            layoutY="380.0"
+            prefWidth="233.0"
+            prefHeight="30.0"
+            focusTraversable="false">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </Button>
+
 </AnchorPane>
