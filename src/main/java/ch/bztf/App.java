@@ -91,6 +91,11 @@ public class App extends Application {
             new Image(getClass().getResourceAsStream("/ch/bztf/icon-128.png"))
         );
 
+        /* Add extra CSS stylesheets */
+        scene.getStylesheets().add(
+            getClass().getResource("/ch/bztf/calc.css").toExternalForm()
+        );
+
         /* Lock minimum width and height */
         stage.show();
         deferUntilStable(() -> {

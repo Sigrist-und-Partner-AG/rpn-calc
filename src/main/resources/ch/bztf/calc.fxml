@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -31,9 +32,7 @@
                mouseTransparent="true"
                editable="false"
                style="-fx-text-fill: #FF0000;">
-        <font>
-            <Font size="10.0" />
-        </font>
+        <font><Font size="10.0" /></font>
     </TextField>
 
     <!-- Row 1: [a] [b] [c] [d] [⇐] -->
@@ -46,7 +45,9 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false"
-            blendMode="MULTIPLY" />
+            blendMode="MULTIPLY">
+        <tooltip><Tooltip text="Register a" /></tooltip>
+    </Button>
 
     <Button text="b"
             accessibleText="b"
@@ -56,7 +57,9 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false"
-            blendMode="MULTIPLY" />
+            blendMode="MULTIPLY">
+        <tooltip><Tooltip text="Register b" /></tooltip>
+    </Button>
 
     <Button text="c"
             accessibleText="c"
@@ -66,7 +69,9 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false"
-            blendMode="MULTIPLY" />
+            blendMode="MULTIPLY">
+        <tooltip><Tooltip text="Register c" /></tooltip>
+    </Button>
 
     <Button text="d"
             accessibleText="d"
@@ -76,7 +81,9 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false"
-            blendMode="MULTIPLY" />
+            blendMode="MULTIPLY">
+        <tooltip><Tooltip text="Register d" /></tooltip>
+    </Button>
 
     <Button text="⇐"
             accessibleText="&lt;="
@@ -89,9 +96,8 @@
             blendMode="MULTIPLY"
             textOverrun="CLIP"
             style="-fx-padding: 0;">
-        <font>
-            <Font size="15.0" />
-        </font>
+        <font><Font size="15.0" /></font>
+        <tooltip><Tooltip text="Store in register" /></tooltip>
     </Button>
 
     <!-- Row 2: [+] [−] [×] [÷] [%] -->
@@ -103,7 +109,9 @@
             layoutY="131.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false" />
+            focusTraversable="false">
+        <tooltip><Tooltip text="Addition" /></tooltip>
+    </Button>
 
     <Button text="−"
             accessibleText="-"
@@ -112,7 +120,9 @@
             layoutY="131.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false" />
+            focusTraversable="false">
+        <tooltip><Tooltip text="Subtraction" /></tooltip>
+    </Button>
 
     <Button text="×"
             accessibleText="*"
@@ -121,7 +131,9 @@
             layoutY="131.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false" />
+            focusTraversable="false">
+        <tooltip><Tooltip text="Multiplication" /></tooltip>
+    </Button>
 
     <Button text="÷"
             accessibleText="/"
@@ -130,7 +142,9 @@
             layoutY="131.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false" />
+            focusTraversable="false">
+        <tooltip><Tooltip text="Division" /></tooltip>
+    </Button>
 
     <Button text="\%"
             accessibleText="\%"
@@ -139,7 +153,9 @@
             layoutY="131.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false" />
+            focusTraversable="false">
+        <tooltip><Tooltip text="Remainder" /></tooltip>
+    </Button>
 
     <!-- Row 3: [√] [7] [8] [9] [C] -->
 
@@ -150,7 +166,9 @@
             layoutY="181.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false" />
+            focusTraversable="false">
+        <tooltip><Tooltip text="Square root" /></tooltip>
+    </Button>
 
     <Button text="7"
             accessibleText="7"
@@ -189,9 +207,8 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font>
-            <Font size="10.0" />
-        </font>
+        <font><Font size="10.0" /></font>
+        <tooltip><Tooltip text="Clear all" /></tooltip>
     </Button>
 
     <!-- Row 4: [x²] [4] [5] [6] [CE] -->
@@ -204,9 +221,8 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font>
-            <Font size="12.0" />
-        </font>
+        <font><Font size="12.0" /></font>
+        <tooltip><Tooltip text="Square" /></tooltip>
     </Button>
 
     <Button text="4"
@@ -246,9 +262,8 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font>
-            <Font size="10.0" />
-        </font>
+        <font><Font size="10.0" /></font>
+        <tooltip><Tooltip text="Clear entry" /></tooltip>
     </Button>
 
     <!-- Row 5: [yˣ] [1] [2] [3] [⌫] -->
@@ -261,9 +276,8 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font>
-            <Font size="12.0" />
-        </font>
+        <font><Font size="12.0" /></font>
+        <tooltip><Tooltip text="Exponentiation" /></tooltip>
     </Button>
 
     <Button text="1"
@@ -303,9 +317,8 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font>
-            <Font size="10.0" />
-        </font>
+        <font><Font size="10.0" /></font>
+        <tooltip><Tooltip text="Backspace" /></tooltip>
     </Button>
 
     <!-- Row 6: [↤] [↦] [0] [.] [(-)] -->
@@ -316,7 +329,9 @@
             layoutY="331.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false" />
+            focusTraversable="false">
+        <tooltip><Tooltip text="Decrease precision" /></tooltip>
+    </Button>
 
     <Button text="↦"
             onAction="#increasePrecision"
@@ -324,7 +339,9 @@
             layoutY="331.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false" />
+            focusTraversable="false">
+        <tooltip><Tooltip text="Increase precision" /></tooltip>
+    </Button>
 
     <Button text="0"
             accessibleText="0"
@@ -344,9 +361,8 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font>
-            <Font size="15.0" />
-        </font>
+        <font><Font size="15.0" /></font>
+        <tooltip><Tooltip text="Decimal point" /></tooltip>
     </Button>
 
     <Button text="(-)"
@@ -357,9 +373,8 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font>
-            <Font size="12.0" />
-        </font>
+        <font><Font size="12.0" /></font>
+        <tooltip><Tooltip text="Negation" /></tooltip>
     </Button>
 
     <!-- Row 7: [=] -->
@@ -371,9 +386,8 @@
             prefWidth="233.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font>
-            <Font size="15.0" />
-        </font>
+        <font><Font size="15.0" /></font>
+        <tooltip><Tooltip text="Evaluate expression" /></tooltip>
     </Button>
 
 </AnchorPane>
