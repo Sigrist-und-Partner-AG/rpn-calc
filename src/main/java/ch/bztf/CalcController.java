@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.robot.Robot;
 
 /**
@@ -36,6 +37,19 @@ public class CalcController {
      */
     public void initialize(RPNCalc calc) {
         this.calc = calc;
+    }
+
+    /**
+     * Wipes the input field completely when the escape key is pressed.
+     * 
+     * @param ev The key event. It is only handled on escape.
+     */
+    @FXML
+    private void clearInputOnEscape(KeyEvent ev) {
+        if (ev.getCode() == KeyCode.ESCAPE) {
+            clearInput(null);
+            ev.consume();
+        }
     }
 
     /**

@@ -12,6 +12,7 @@ class CalcController {
     - @FXML error : TextField
     - calc : RPNCalc
     + initialize(RPNCalc calc) : void
+    - @FXML clearInputOnEscape(KeyEvent ev) : void
     - @FXML clearInput(ActionEvent ev) : void
     - @FXML deleteInputByChar(ActionEvent ev) : void
     - @FXML deleteInputByWord(ActionEvent ev) : void
