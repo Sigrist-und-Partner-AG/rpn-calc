@@ -6,6 +6,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -56,7 +57,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        /* Load FXML */
+        /* Load FXML with explicit font */
+        Font.loadFont(getClass().getResourceAsStream("/ch/bztf/fonts/DejaVuSans.ttf"), 13);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ch/bztf/calc.fxml"));
         Parent root = loader.load();
 

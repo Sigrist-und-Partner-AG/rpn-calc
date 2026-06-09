@@ -4,7 +4,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="421.0"
             prefWidth="260.0"
@@ -31,9 +30,8 @@
                focusTraversable="false"
                mouseTransparent="true"
                editable="false"
-               style="-fx-text-fill: #FF0000;">
-        <font><Font size="10.0" /></font>
-    </TextField>
+               style="-fx-text-fill: #FF0000;"
+               styleClass="font-tiny" />
 
     <!-- Row 1: [a] [b] [c] [d] [⇐] -->
 
@@ -94,9 +92,7 @@
             prefHeight="30.0"
             focusTraversable="false"
             blendMode="MULTIPLY"
-            textOverrun="CLIP"
-            style="-fx-padding: 0;">
-        <font><Font size="15.0" /></font>
+            styleClass="font-large">
         <tooltip><Tooltip text="Store in register" /></tooltip>
     </Button>
 
@@ -206,8 +202,8 @@
             layoutY="181.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false">
-        <font><Font size="10.0" /></font>
+            focusTraversable="false"
+            styleClass="font-tiny">
         <tooltip><Tooltip text="Clear all" /></tooltip>
     </Button>
 
@@ -220,8 +216,8 @@
             layoutY="231.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false">
-        <font><Font size="12.0" /></font>
+            focusTraversable="false"
+            styleClass="font-small">
         <tooltip><Tooltip text="Square" /></tooltip>
     </Button>
 
@@ -261,8 +257,8 @@
             layoutY="231.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false">
-        <font><Font size="10.0" /></font>
+            focusTraversable="false"
+            styleClass="font-tiny">
         <tooltip><Tooltip text="Clear entry" /></tooltip>
     </Button>
 
@@ -275,8 +271,8 @@
             layoutY="281.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false">
-        <font><Font size="12.0" /></font>
+            focusTraversable="false"
+            styleClass="font-small">
         <tooltip><Tooltip text="Exponentiation" /></tooltip>
     </Button>
 
@@ -316,8 +312,8 @@
             layoutY="281.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false">
-        <font><Font size="10.0" /></font>
+            focusTraversable="false"
+            styleClass="font-tiny">
         <tooltip><Tooltip text="Backspace" /></tooltip>
     </Button>
 
@@ -360,12 +356,12 @@
             layoutY="331.0"
             prefWidth="30.0"
             prefHeight="30.0"
-            focusTraversable="false">
-        <font><Font size="15.0" /></font>
+            focusTraversable="false"
+            styleClass="font-large">
         <tooltip><Tooltip text="Decimal point" /></tooltip>
     </Button>
 
-    <Button text="(-)"
+    <Button text="±"
             accessibleText="neg"
             onAction="#insertInputWithSpacing"
             layoutX="216.0"
@@ -373,7 +369,6 @@
             prefWidth="30.0"
             prefHeight="30.0"
             focusTraversable="false">
-        <font><Font size="12.0" /></font>
         <tooltip><Tooltip text="Negation" /></tooltip>
     </Button>
 
@@ -385,8 +380,8 @@
             layoutY="380.0"
             prefWidth="233.0"
             prefHeight="30.0"
-            focusTraversable="false">
-        <font><Font size="15.0" /></font>
+            focusTraversable="false"
+            styleClass="font-large">
         <tooltip><Tooltip text="Evaluate expression" /></tooltip>
     </Button>
 

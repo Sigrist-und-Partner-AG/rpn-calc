@@ -1,3 +1,18 @@
+.button,
 .tooltip {
+    -fx-font-family: "DejaVu Sans";
     -fx-font-size: 13px;
+}
+
+.font-tiny {
+    -fx-font-size: 10px;
+}
+
+.font-small {
+    -fx-font-size: 12px;
+}
+
+.font-large {
+    -fx-font-size: 15px;
+    -fx-padding: 0;
 }
