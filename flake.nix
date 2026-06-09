@@ -32,7 +32,7 @@
       # Common Maven settings
       mvnDefaults = {
         pname = "rpn-calc";
-        version = "1.0.0";
+        version = "1.1.0";
         src = self;
 
         # JDK 11's jlink can produce non-reproducible runtime images:
